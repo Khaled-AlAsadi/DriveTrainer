@@ -7,8 +7,8 @@ from .models import Question , Choice
 
 def index(request):
     questions = Question.objects.all()
-    print("questions")
-    return render(request, 'home.html')
+    print(questions)
+    return render(request, 'home.html',{"questions":questions})
 
 
 def question_detail(request, question_id):
