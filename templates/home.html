@@ -6,13 +6,12 @@
 {% if user.is_authenticated %}
 <p>Hi {{ user.username }}!</p>
 <!--<p><a href="{% url 'password_change' %}">Password Change</a></p>-->
-<form action="{% url 'logout' %}" method="post">
-  {% csrf_token %}
-  <button type="submit">Log Out</button>
-</form>
+    {% for question in questions %}
+        <a href="question/{{question.id}}">{{question.id}}</a>
+    {% endfor %}
 {% else %}
-<p>You are not logged in</p>
+<!--<p>You are not logged in</p>
 <p><a href="{% url 'password_reset' %}">Password Reset</a></p>
-<p><a href="{% url 'login' %}">Log In</a></p>
+<p><a href="{% url 'login' %}">Log In</a></p>-->
 {% endif %}
 {% endblock %}
