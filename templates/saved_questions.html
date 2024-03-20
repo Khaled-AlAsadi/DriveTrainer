@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block title %}Sparade Frågor sida{% endblock %}
+
+{% block content %}
+{% for saved_question in saved_questions %}
+    <li>{{saved_question}}</li>
+{% endfor %}
+{% endblock %}
