@@ -20,9 +20,10 @@ from myapp import views as index_views
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("accounts/", include("accounts.urls")),
+    path("", include("accounts.urls")),
     path("", index_views.index , name="home"),
-    path("accounts/", include("django.contrib.auth.urls")),
+    path("", include("django.contrib.auth.urls")),
     path('question/<int:question_id>/', index_views.question_detail, name='question_detail'),
+    path('saved_questions', index_views.saved_questions, name='saved_questions'),
 
 ]
