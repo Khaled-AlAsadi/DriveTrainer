@@ -3,6 +3,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from .models import Question, Choice,Answer
 from django.contrib.auth.models import AnonymousUser
+from django.shortcuts import get_object_or_404
 
 # Create your views here.
 
@@ -26,32 +27,34 @@ def saved_questions(request):
 
 def question_detail(request, question_id):
     if not isinstance(request.user, AnonymousUser):
-        question = Question.objects.get(pk=question_id)
-        # Retrieve all choices related to the question
+        question = get_object_or_404(Question, pk=question_id)
         choices = question.choice_set.all()
-        message = None
+        message = ''
+        is_answered_correctly = False
 
         if request.method == "POST":
-            submitted_answer_id = request.POST.get('choice')
-            print(submitted_answer_id)
-            submitted_choice = Choice.objects.get(pk=submitted_answer_id)
-            if submitted_choice.is_correct:
-                print("CORRECT")
-                message = "Your answer is correct!"
+                submitted_answer_id = request.POST.get('choice')
+                submitted_choice = Choice.objects.get(pk=submitted_answer_id)
+                if submitted_choice.is_correct:
+                    message = "Your answer is correct!"
+                    is_answered_correctly = True
+                    existing_answer = Answer.objects.filter(question=question, user=request.user).first()
+                    if existing_answer:
+                        existing_answer.is_answered = True
+                        existing_answer.save()
+                    else:
+                        answer = Answer.objects.create(question=question, user=request.user, is_answered=True)
+                        answer.selected_choices.add(submitted_choice)
+                else:
+                    message = "Sorry, your answer is wrong."
+
+        elif request.method == "GET":
                 existing_answer = Answer.objects.filter(question=question, user=request.user).first()
-                if existing_answer and not existing_answer.is_answered:
-                    existing_answer.is_answered = True
-                    existing_answer.save()
-                elif not existing_answer:
-                    answer = Answer.objects.create(question=question, user=request.user, is_answered=True)
-                    answer.selected_choices.add(submitted_choice)
-            else:
-                message = "Sorry, your answer is wrong."
-                print("WRONG")
-                
-        if request.method == "GET":
-            question = Question.objects.get(pk=question_id)
-            choices = question.choice_set.all()
-        return render(request, 'question_detail.html', {'question': question, 'choices': choices, 'message': message})
+                if existing_answer:
+                    for choice in choices:
+                        if choice in existing_answer.selected_choices.all():
+                            choice.is_selected = True
+                    
+        return render(request, 'question_detail.html', {'question': question, 'choices': choices, 'message': message, 'is_answered_correctly': is_answered_correctly})
     else:
         return HttpResponseRedirect('login') 
