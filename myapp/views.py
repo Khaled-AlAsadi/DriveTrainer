@@ -17,6 +17,15 @@ def index(request):
     else:
         return HttpResponseRedirect('login')
 
+def trafic_rules(request):
+    if not isinstance(request.user, AnonymousUser):
+        print(request.user)
+        questions = Question.objects.all()
+        print(questions)
+        return render(request, 'trafic_rules.html')
+    else:
+        return HttpResponseRedirect('login')
+
 def saved_questions(request):
     if not isinstance(request.user, AnonymousUser):
         if request.method == "GET":
