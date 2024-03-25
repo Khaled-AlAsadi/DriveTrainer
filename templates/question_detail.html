@@ -2,14 +2,19 @@
 
 {% block title %}Question Detail{% endblock %}
 {% block content %}
-<a href="/">Tillbaka </a>
+<a href="/">Tillbaka </a><br>
+<a href="/question/{{question.id}}">{{question.id}}</a>
+
 <h1>{{ question.question_text }}</h1>
-<p>{{message}}</p>
 <form method="post">
     {% csrf_token %}
     {% for choice in choices %}
-        <input type="checkbox" name="choice" value="{{ choice.id }}"> {{ choice.choice_text }}<br>
+        <input type="checkbox" name="choice" value="{{ choice.id }}" {% if choice.is_selected %}checked{% endif %}> 
+        {{ choice.choice_text }}<br>
     {% endfor %}
     <button type="submit" value="Submit">Submit</button>
+    {% if message %}
+        <p>{{ message }}</p>
+    {% endif %}
 </form>
 {% endblock %}
