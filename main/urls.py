@@ -22,6 +22,8 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("", include("accounts.urls")),
     path("", index_views.index , name="home"),
+    path("trafic_rules", index_views.trafic_rules , name="trafic_rules"),
+
     path("", include("django.contrib.auth.urls")),
     path('question/<int:question_id>/', index_views.question_detail, name='question_detail'),
     path('saved_questions', index_views.saved_questions, name='saved_questions'),
