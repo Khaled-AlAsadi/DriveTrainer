@@ -4,8 +4,9 @@
 
 {% block content %}
 {% if user.is_authenticated %}
+<!--
 <p>Hi {{ user.username }}!</p>
-<!--<p><a href="{% url 'password_change' %}">Password Change</a></p>-->
+<p><a href="{% url 'password_change' %}">Password Change</a></p>
     {% for question in questions %}
         <a href="question/{{question.id}}">{{question.id}}</a>
     {% endfor %}
