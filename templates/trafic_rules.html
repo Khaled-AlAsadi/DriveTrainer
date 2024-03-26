@@ -1,4 +1,7 @@
 {% extends "base.html" %}
 {% block title %}TrafikRegler{% endblock %}
 {% block content %}
+    {% for rule in rules %}
+        <h2>{{rule.title }}</h2>
+    {% endfor %}
 {% endblock %}
