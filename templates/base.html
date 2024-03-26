@@ -10,7 +10,7 @@
 </head>
 
 <body>
-  <nav class=" navbar navbar-expand-lg navbar-light bg-light">
+  <nav class=" navbar navbar-expand-lg navbar-dark bg-dark">
     <a class="navbar-brand" href="/">DriveReady</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -23,10 +23,10 @@
         </li>
         {% if user.is_authenticated %}     
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'logout' %}">logout</a>
+          <a class="nav-link" href="/trafic_rules">trafikregler</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/trafic_rules">trafikregler</a>
+          <a class="nav-link" href="{% url 'logout' %}">logout</a>
         </li>
         {% else %}
         <li class="nav-item">
