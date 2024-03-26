@@ -21,7 +21,7 @@ from myapp import views as index_views
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", include("accounts.urls")),
-    path("", index_views.index , name="home"),
+    path("home", index_views.index , name="home"),
     path("trafic_rules", index_views.trafic_rules , name="trafic_rules"),
 
     path("", include("django.contrib.auth.urls")),
