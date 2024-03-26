@@ -1,7 +1,7 @@
 from urllib.request import HTTPRedirectHandler
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
-from .models import Question, Choice,Answer
+from .models import Question, Choice,Answer, TraficRule
 from django.contrib.auth.models import AnonymousUser
 from django.shortcuts import get_object_or_404
 
@@ -27,10 +27,9 @@ def index(request):
 
 def trafic_rules(request):
     if not isinstance(request.user, AnonymousUser):
-        print(request.user)
-        questions = Question.objects.all()
-        print(questions)
-        return render(request, 'trafic_rules.html')
+        rules = TraficRule.objects.all()
+        print(rules)
+        return render(request, 'trafic_rules.html',{"rules":rules})
     else:
         return HttpResponseRedirect('login')
 
