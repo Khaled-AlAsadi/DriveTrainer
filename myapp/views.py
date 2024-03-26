@@ -12,8 +12,16 @@ def index(request):
     if not isinstance(request.user, AnonymousUser):
         print(request.user)
         questions = Question.objects.all()
-        print(questions)
-        return render(request, 'home.html', {"questions": questions})
+        total_questions = Question.objects.count()
+        answered_questions = Answer.objects.filter(user=request.user, is_answered=True).count()
+    
+        if total_questions > 0:
+            progress_percentage = (answered_questions / total_questions) * 100
+            print(int(progress_percentage))
+        else:
+            progress_percentage = 0
+
+        return render(request, 'home.html', {"questions": questions, "progress_percentage": int(progress_percentage)})
     else:
         return HttpResponseRedirect('login')
 

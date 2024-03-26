@@ -4,6 +4,15 @@
 
 {% block content %}
 {% if user.is_authenticated %}
+<h2>
+    Körkortsfrågor – öva på teoriprov online
+</h2>
+<p>
+    Denna sida hjälper dig att öva på teoriprovet. Prova vår frågor
+</p>
+<div class="progress">
+    <div class="progress-bar" role="progressbar" style="width: {{ progress_percentage }}%;" aria-valuenow="{{ progress_percentage }}" aria-valuemin="0" aria-valuemax="100">{{ progress_percentage }}%</div>
+</div>
 <!--
 <p>Hi {{ user.username }}!</p>
 <p><a href="{% url 'password_change' %}">Password Change</a></p>
