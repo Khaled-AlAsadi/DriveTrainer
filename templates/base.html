@@ -37,6 +37,7 @@
     </div>
   </nav>
   <main class="container">
+    {% if user.is_authenticated %}     
     <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
       <ol class="carousel-indicators">
         <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
@@ -75,6 +76,7 @@
         <span class="sr-only">Next</span>
       </button>
     </div>
+    {% endif %}
     {% block content %}
     {% endblock %}
   </main>
