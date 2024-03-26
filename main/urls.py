@@ -17,7 +17,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path,include
 from myapp import views as index_views
-
+from django.conf import settings
+from django.conf.urls.static import static
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", include("accounts.urls")),
@@ -28,4 +29,4 @@ urlpatterns = [
     path('question/<int:question_id>/', index_views.question_detail, name='question_detail'),
     path('saved_questions', index_views.saved_questions, name='saved_questions'),
 
-]
+]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
