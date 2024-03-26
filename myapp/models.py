@@ -42,8 +42,10 @@ class TraficRule(models.Model):
     
 class TraficRuleText(models.Model):
     sub_title = models.ForeignKey(TraficRule,on_delete=models.CASCADE)
+    title = models.CharField(max_length=500, default="Title")
     text = models.CharField(max_length=5000)
     image_link = models.CharField(max_length=2000)
-    
+    sub_text = models.CharField(max_length=500, default="sub_text")
+
     def __str__(self):
         return str(self.sub_title)
