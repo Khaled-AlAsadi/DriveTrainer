@@ -62,6 +62,10 @@ def question_detail(request, question_id):
                     else:
                         answer = Answer.objects.create(question=question, user=request.user, is_answered=True)
                         answer.selected_choices.add(submitted_choice)
+                    existing_answer = Answer.objects.filter(question=question, user=request.user).first()
+                    for choice in choices:
+                        if choice in existing_answer.selected_choices.all():
+                            choice.is_selected = True
                 else:
                     message = "Sorry, your answer is wrong."
 
