@@ -4,24 +4,28 @@
 
 {% block content %}
 {% if user.is_authenticated %}
-<h2>
-    Körkortsfrågor – öva på teoriprov online
-</h2>
-<p>
-    Denna sida hjälper dig att öva på teoriprovet. Prova vår frågor
-</p>
-<div class="progress">
-    <div class="progress-bar" role="progressbar" style="width: {{ progress_percentage }}%;" aria-valuenow="{{ progress_percentage }}" aria-valuemin="0" aria-valuemax="100">{{ progress_percentage }}%</div>
-</div>
-<!--
-<p>Hi {{ user.username }}!</p>
-<p><a href="{% url 'password_change' %}">Password Change</a></p>
-    {% for question in questions %}
-        <a href="question/{{question.id}}">{{question.id}}</a>
-    {% endfor %}
+    <div class="container">
+        <h2>
+            Körkortsfrågor – öva på teoriprov online
+        </h2>
+        <p>
+            Denna sida hjälper dig att öva på teoriprovet. Prova vår frågor
+        </p>
+
+        <div class="progress">
+            <div class="progress-bar" role="progressbar" style="width: {{ progress_percentage }}%;" aria-valuenow="{{ progress_percentage }}" aria-valuemin="0" aria-valuemax="100">{{ progress_percentage }}%</div>
+        </div>
+        <button>
+            {% if progress_percentage == 0%}
+                <span> Starta Quiz </span>
+            {% else %}
+                <span> Fortsätt Quiz</span>
+            {%endif%}
+        </button>
+    </div>
+
 {% else %}
-<!--<p>You are not logged in</p>
-<p><a href="{% url 'password_reset' %}">Password Reset</a></p>
-<p><a href="{% url 'login' %}">Log In</a></p>-->
+    <p>You are not logged in</p>
+    <p><a href="{% url 'login' %}">Log In</a></p>
 {% endif %}
 {% endblock %}
