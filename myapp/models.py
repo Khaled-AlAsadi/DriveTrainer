@@ -12,7 +12,7 @@ class Question(models.Model):
     pub_date = models.DateTimeField('date published')
     difficulty = models.CharField(max_length=10, choices=DIFFICULTY_CHOICES)
     is_saved = models.BooleanField(default=False)
-
+    link = models.CharField(max_length=500,default="")
     def __str__(self):
         return self.question_text
 
@@ -45,6 +45,5 @@ class TraficRuleText(models.Model):
     text = models.CharField(max_length=5000)
     sub_text = models.CharField(max_length=1000,default="Default sub_text")
     image_link = models.CharField(max_length=1000)
-    
     def __str__(self):
         return str(self.sub_title)
