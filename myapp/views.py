@@ -42,6 +42,10 @@ def saved_questions(request):
     else:
         return HttpResponseRedirect('login') 
 
+def continue_quiz(request):
+    questions= Answer.objects.filter(Question,is_answered =False)
+    return render(request, 'question_detail.html', {'questions': questions})
+
 def question_detail(request, question_id):
     if not isinstance(request.user, AnonymousUser):
         question = get_object_or_404(Question, pk=question_id)
