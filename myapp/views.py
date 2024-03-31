@@ -17,7 +17,6 @@ def index(request):
     
         if total_questions > 0:
             progress_percentage = (answered_questions / total_questions) * 100
-            print(int(progress_percentage))
         else:
             progress_percentage = 0
 
