@@ -1,5 +1,5 @@
 from urllib.request import HTTPRedirectHandler
-from django.http import HttpResponseRedirect
+from django.http import Http404, HttpResponseRedirect
 from django.shortcuts import redirect, render
 from .models import Question, Choice, Answer, TraficRule, TraficRuleText
 from django.contrib.auth.models import AnonymousUser
@@ -54,10 +54,34 @@ def continue_quiz(request):
     first_question = Question.objects.first()
     return redirect('question_detail', question_id=first_question.id)
 
+def next_question(request, current_question_id):
+    try:
+        # id__gt = greater than
+        next_question = Question.objects.filter(id__gt=current_question_id).order_by('id').first()
+        if next_question:
+            return redirect('question_detail', question_id=next_question.id)
+    except Question.DoesNotExist:
+        return redirect('question_not_found')
+
+def previous_question(request, current_question_id):
+    try:
+        # id__lt = less than
+        previous_question = Question.objects.filter(id__lt=current_question_id).order_by('id').first()
+        if previous_question:
+            return redirect('question_detail', question_id=previous_question.id)
+        else:
+            raise Http404("Previous question does not exist")
+    except Question.DoesNotExist:
+        raise Http404("Previous question does not exist")
+    
 def question_detail(request, question_id):
     if not isinstance(request.user, AnonymousUser):
         question = get_object_or_404(Question, pk=question_id)
         choices = question.choice_set.all()
+        last_question_id = Question.objects.last().id
+        first_question_id = Question.objects.first().id
+        is_last_question = question_id == last_question_id
+        is_first_question = question_id == first_question_id
         message = ''
         is_answered_correctly = False
 
@@ -91,7 +115,6 @@ def question_detail(request, question_id):
                 for choice in choices:
                     if choice in existing_answer.selected_choices.all():
                         choice.is_selected = True
-
-        return render(request, 'question_detail.html', {'question': question, 'choices': choices, 'message': message, 'is_answered_correctly': is_answered_correctly})
+        return render(request, 'question_detail.html', {'question': question, 'choices': choices, 'message': message, 'is_answered_correctly': is_answered_correctly,'current_question_id': question_id,"last_question_id":last_question_id,"is_last_question":is_last_question,"is_first_question":is_first_question})
     else:
         return HttpResponseRedirect('login')
