@@ -54,26 +54,31 @@ def continue_quiz(request):
     first_question = Question.objects.first()
     return redirect('question_detail', question_id=first_question.id)
 
+
 def next_question(request, current_question_id):
     try:
         # id__gt = greater than
-        next_question = Question.objects.filter(id__gt=current_question_id).order_by('id').first()
+        next_question = Question.objects.filter(
+            id__gt=current_question_id).order_by('id').first()
         if next_question:
             return redirect('question_detail', question_id=next_question.id)
     except Question.DoesNotExist:
         return redirect('question_not_found')
 
+
 def previous_question(request, current_question_id):
     try:
         # id__lt = less than
-        previous_question = Question.objects.filter(id__lt=current_question_id).order_by('id').first()
+        previous_question = Question.objects.filter(
+            id__lt=current_question_id).order_by('id').first()
         if previous_question:
             return redirect('question_detail', question_id=previous_question.id)
         else:
             raise Http404("Previous question does not exist")
     except Question.DoesNotExist:
         raise Http404("Previous question does not exist")
-    
+
+
 def question_detail(request, question_id):
     if not isinstance(request.user, AnonymousUser):
         question = get_object_or_404(Question, pk=question_id)
@@ -87,26 +92,29 @@ def question_detail(request, question_id):
 
         if request.method == "POST":
             submitted_answer_id = request.POST.get('choice')
-            submitted_choice = Choice.objects.get(pk=submitted_answer_id)
-            if submitted_choice.is_correct:
-                message = "Your answer is correct!"
-                is_answered_correctly = True
-                existing_answer = Answer.objects.filter(
-                    question=question, user=request.user).first()
-                if existing_answer:
-                    existing_answer.is_answered = True
-                    existing_answer.save()
+            if submitted_answer_id:
+                submitted_choice = Choice.objects.get(pk=submitted_answer_id)
+                if submitted_choice.is_correct:
+                    message = "Your answer is correct!"
+                    is_answered_correctly = True
+                    existing_answer = Answer.objects.filter(
+                        question=question, user=request.user).first()
+                    if existing_answer:
+                        existing_answer.is_answered = True
+                        existing_answer.save()
+                    else:
+                        answer = Answer.objects.create(
+                            question=question, user=request.user, is_answered=True)
+                        answer.selected_choices.add(submitted_choice)
+                    existing_answer = Answer.objects.filter(
+                        question=question, user=request.user).first()
+                    for choice in choices:
+                        if choice in existing_answer.selected_choices.all():
+                            choice.is_selected = True
                 else:
-                    answer = Answer.objects.create(
-                        question=question, user=request.user, is_answered=True)
-                    answer.selected_choices.add(submitted_choice)
-                existing_answer = Answer.objects.filter(
-                    question=question, user=request.user).first()
-                for choice in choices:
-                    if choice in existing_answer.selected_choices.all():
-                        choice.is_selected = True
+                    message = "Sorry, your answer is wrong."
             else:
-                message = "Sorry, your answer is wrong."
+                message = "Please select an answer."
 
         elif request.method == "GET":
             existing_answer = Answer.objects.filter(
@@ -115,6 +123,6 @@ def question_detail(request, question_id):
                 for choice in choices:
                     if choice in existing_answer.selected_choices.all():
                         choice.is_selected = True
-        return render(request, 'question_detail.html', {'question': question, 'choices': choices, 'message': message, 'is_answered_correctly': is_answered_correctly,'current_question_id': question_id,"last_question_id":last_question_id,"is_last_question":is_last_question,"is_first_question":is_first_question})
+        return render(request, 'question_detail.html', {'question': question, 'choices': choices, 'message': message, 'is_answered_correctly': is_answered_correctly, 'current_question_id': question_id, "last_question_id": last_question_id, "is_last_question": is_last_question, "is_first_question": is_first_question})
     else:
         return HttpResponseRedirect('login')
