@@ -22,12 +22,16 @@
         {% endif %}
     </form>
     <div class="button-container">
-        <button>
+        {% if not is_first_question %}
+        <a href="{% url 'previous_question' current_question_id=current_question_id %}" class="nextButton">
             Previous
-        </button>
-        <button>
-            Next
-        </button>
+        </a>
+        {% endif %}
+        {% if not is_last_question %}
+        <a href="{% url 'next_question' current_question_id=current_question_id %}" class="nextButton">
+           Nästa fråga
+        </a>
+        {% endif %}
     </div>
 </div>
 {% endblock %}
