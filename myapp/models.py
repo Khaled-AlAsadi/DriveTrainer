@@ -3,14 +3,8 @@ from django.contrib.auth.models import User
 
 
 class Question(models.Model):
-    DIFFICULTY_CHOICES = [
-        ("Easy", "Easy"),
-        ("Medium", "Medium"),
-        ("Hard", "Hard"),
-    ]
     question_text = models.CharField(max_length=500)
     pub_date = models.DateTimeField('date published')
-    difficulty = models.CharField(max_length=10, choices=DIFFICULTY_CHOICES)
     is_saved = models.BooleanField(default=False)
     link = models.CharField(max_length=500,default="")
     def __str__(self):
