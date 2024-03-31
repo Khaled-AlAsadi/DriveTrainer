@@ -13,16 +13,21 @@
         </p>
 
         <div class="progress">
-            <div class="progress-bar" role="progressbar" style="width: {{ progress_percentage }}%;" aria-valuenow="{{ progress_percentage }}" aria-valuemin="0" aria-valuemax="100">{{ progress_percentage }}%</div>
+            <div class="progress-bar" role="progressbar" aria-valuenow="{{ progress_percentage }}" aria-valuemin="0" aria-valuemax="100">
+                {{ progress_percentage }}%
+            </div>
         </div>
-        <button>
-            {% if progress_percentage == 0%}
-                <span> Starta Quiz </span>
+        <div>
+            {% if progress_percentage == 0 %}
+                <button onclick="window.location.href='{% url 'start_quiz' %}'">
+                        Starta Quiz
+                </button>
             {% else %}
-                <span> Fortsätt Quiz</span>
-            {%endif%}
-        </button>
-    </div>
+                <button>
+                        Fortsätt Quiz
+                </button>
+            {% endif %}
+        </div>
 
 {% else %}
     <p>You are not logged in</p>
