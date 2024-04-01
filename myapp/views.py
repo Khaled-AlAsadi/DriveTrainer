@@ -51,8 +51,13 @@ def start_quiz(request):
 
 
 def continue_quiz(request):
-    first_question = Question.objects.first()
-    return redirect('question_detail', question_id=first_question.id)
+    # Get all answered question IDs
+    answered_question_ids = Answer.objects.values_list('question_id', flat=True)
+
+    # Get the first question that hasn't been answered
+    first_unanswered_question = Question.objects.exclude(id__in=answered_question_ids).first()
+
+    return redirect('question_detail', question_id=first_unanswered_question.id)
 
 
 def next_question(request, current_question_id):
@@ -117,12 +122,14 @@ def question_detail(request, question_id):
                 message = "Please select an answer."
 
         elif request.method == "GET":
+            print(is_answered_correctly)
             existing_answer = Answer.objects.filter(
                 question=question, user=request.user).first()
             if existing_answer:
                 for choice in choices:
                     if choice in existing_answer.selected_choices.all():
                         choice.is_selected = True
+                        is_answered_correctly = True
         return render(request, 'question_detail.html', {'question': question, 'choices': choices, 'message': message, 'is_answered_correctly': is_answered_correctly, 'current_question_id': question_id, "last_question_id": last_question_id, "is_last_question": is_last_question, "is_first_question": is_first_question})
     else:
         return HttpResponseRedirect('login')
