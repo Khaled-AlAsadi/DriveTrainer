@@ -30,6 +30,11 @@
             {% endif %}
         </div>
         <h2>Vägmärken - Quiz</h2>
+        <div class="progress">
+            <div class="progress-bar" role="progressbar" style="width: {{ answered_roadSignQuestions_questions }}%" aria-valuenow="{{ answered_roadSignQuestions_questions }}" aria-valuemin="0" aria-valuemax="100">
+                {{ answered_roadSignQuestions_questions }}%
+            </div>
+        </div>
     </div>
 {% else %}
     <p>You are not logged in</p>

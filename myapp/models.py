@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
-class Question(models.Model):
+class TraficRuleQuestion(models.Model):
     question_text = models.CharField(max_length=500)
     pub_date = models.DateTimeField('date published')
     is_saved = models.BooleanField(default=False)
@@ -10,8 +10,8 @@ class Question(models.Model):
     def __str__(self):
         return self.question_text
 
-class Choice(models.Model):
-    question = models.ForeignKey(Question, on_delete=models.CASCADE)
+class TraficRuleChoice(models.Model):
+    question = models.ForeignKey(TraficRuleQuestion, on_delete=models.CASCADE)
     choice_text = models.CharField(max_length=200)
     is_correct = models.BooleanField(default=False)
 
@@ -19,10 +19,10 @@ class Choice(models.Model):
         return self.choice_text
 
 
-class Answer(models.Model):
-    question = models.ForeignKey(Question, on_delete=models.CASCADE)
+class TraficRuleAnswer(models.Model):
+    question = models.ForeignKey(TraficRuleQuestion, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    selected_choices = models.ManyToManyField(Choice)
+    selected_choices = models.ManyToManyField(TraficRuleChoice)
     is_answered = models.BooleanField(default=False)
 
     def __str__(self):
@@ -60,7 +60,7 @@ class RoadSignChoice(models.Model):
 class RoadSignAnswer(models.Model):
     question = models.ForeignKey(RoadSignQuestion, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    selected_choices = models.ManyToManyField(Choice)
+    selected_choices = models.ManyToManyField(RoadSignChoice)
     is_answered = models.BooleanField(default=False)
 
     def __str__(self):

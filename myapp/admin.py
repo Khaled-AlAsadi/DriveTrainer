@@ -1,11 +1,11 @@
 from django.contrib import admin
 from django.contrib import admin
-from .models import Question, Choice, Answer, RoadSignAnswer, RoadSignChoice, RoadSignQuestion, TraficRule, TraficRuleText
+from .models import RoadSignAnswer, RoadSignChoice, RoadSignQuestion, TraficRule, TraficRuleAnswer, TraficRuleChoice, TraficRuleQuestion, TraficRuleText
 # Register your models here.
 
-admin.site.register(Question)
-admin.site.register(Choice)
-admin.site.register(Answer)
+admin.site.register(TraficRuleQuestion)
+admin.site.register(TraficRuleChoice)
+admin.site.register(TraficRuleAnswer)
 admin.site.register(TraficRule)
 admin.site.register(TraficRuleText)
 admin.site.register(RoadSignQuestion)
