@@ -4,3 +4,13 @@
     gap: 50px;
     margin-top: 20px;
 }
+
+#signUpForm{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+
+    button{
+        max-width: 80%;
+    }
+}
