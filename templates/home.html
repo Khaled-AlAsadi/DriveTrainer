@@ -4,33 +4,36 @@
 
 {% block content %}
 {% if user.is_authenticated %}
-    <div class="container">
-        <h2>
-            Körkortsfrågor – öva på teoriprov online
-        </h2>
-        <p>
-            Denna sida hjälper dig att öva på teoriprovet. Prova vår frågor
-        </p>
 
-        <div class="progress">
-            <div class="progress-bar" role="progressbar" aria-valuenow="{{ progress_percentage }}" aria-valuemin="0" aria-valuemax="100">
-                {{ progress_percentage }}%
+        <div class="d-flex flex-column">
+            <h2>
+                Trafikregler - Quiz
+            </h2>
+            <p>
+                Vill du öva på Trafikregler innan du börjar vår quiz?
+                <a href="{% url 'trafic_rules' %}">Trafikregler sida</a>
+            </p>
+
+            <div class="progress">
+                <div class="progress-bar" role="progressbar" style="width: {{ progress_percentage }}%" aria-valuenow="{{ progress_percentage }}" aria-valuemin="0" aria-valuemax="100">
+                    {{ progress_percentage }}%
+                </div>
+            </div>
+            <div>
+                {% if progress_percentage == 0 %}
+                    <button onclick="window.location.href='{% url 'start_quiz' %}'">
+                            Starta Quiz
+                    </button>
+                {% else %}
+                    <button>
+                            Fortsätt Quiz
+                    </button>
+                {% endif %}
             </div>
         </div>
-        <div>
-            {% if progress_percentage == 0 %}
-                <button onclick="window.location.href='{% url 'start_quiz' %}'">
-                        Starta Quiz
-                </button>
-            {% else %}
-                <button>
-                        Fortsätt Quiz
-                </button>
-            {% endif %}
-        </div>
-
 {% else %}
     <p>You are not logged in</p>
     <p><a href="{% url 'login' %}">Log In</a></p>
 {% endif %}
+
 {% endblock %}
