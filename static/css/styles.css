@@ -1,13 +1,17 @@
-.button-container{
+.button-container {
     display: flex;
-    justify-content:center;
+    justify-content: center;
     gap: 50px;
     margin-top: 20px;
 }
 
-#signUpForm{
+#signUpForm {
     display: flex;
     flex-direction: column;
     gap: 5px;
 
+}
+
+#road_signs_pictures {
+    max-height: 200px;
 }
