@@ -41,6 +41,21 @@ class TraficRuleText(models.Model):
     image_link = models.CharField(max_length=1000)
     def __str__(self):
         return str(self.sub_title)
+    
+    
+class RoadSign(models.Model):
+    title = models.CharField(max_length=400)
+    
+    def __str__(self):
+        return self.title
+    
+class RoadSignText(models.Model):
+    sub_title = models.ForeignKey(RoadSign,on_delete=models.CASCADE)
+    text = models.CharField(max_length=5000)
+    sub_text = models.CharField(max_length=1000,default="Default sub_text")
+    image_link = models.CharField(max_length=1000)
+    def __str__(self):
+        return str(self.sub_title)
 
 class RoadSignQuestion(models.Model):
     question_text = models.CharField(max_length=500)
