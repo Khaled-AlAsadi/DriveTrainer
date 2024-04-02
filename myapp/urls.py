@@ -14,5 +14,6 @@ urlpatterns = [
          views.next_question, name='next_question'),
     path('previous_question/<int:current_question_id>/',
          views.previous_question, name='previous_question'),
-
+     path('road_signs',
+         views.road_signs_page, name='road_signs'),
 ]

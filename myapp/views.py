@@ -1,7 +1,7 @@
 from urllib.request import HTTPRedirectHandler
 from django.http import Http404, HttpResponseRedirect
 from django.shortcuts import redirect, render
-from .models import RoadSignAnswer, RoadSignQuestion, TraficRule, TraficRuleAnswer, TraficRuleChoice, TraficRuleQuestion, TraficRuleText
+from .models import RoadSignAnswer, RoadSignQuestion, RoadSignText, TraficRule, TraficRuleAnswer, TraficRuleChoice, TraficRuleQuestion, TraficRuleText,RoadSign
 from django.contrib.auth.models import AnonymousUser
 from django.shortcuts import get_object_or_404
 
@@ -39,7 +39,6 @@ def trafic_rules(request):
     if not isinstance(request.user, AnonymousUser):
         rules = TraficRule.objects.all()
         rules_texts = TraficRuleText.objects.select_related('sub_title').all()
-        print(rules)
         return render(request, 'trafic_rules.html', {"rules": rules, "rule_texts": rules_texts})
     else:
         return HttpResponseRedirect('login')
@@ -61,6 +60,7 @@ def start_quiz(request):
 
 def continue_quiz(request):
     # Get all answered question IDs
+    # Flat retrives a single field
     answered_question_ids = TraficRuleAnswer.objects.values_list(
         'question_id', flat=True)
 
@@ -143,5 +143,14 @@ def trafic_rule_question_detail(request, question_id):
                         choice.is_selected = True
                         is_answered_correctly = True
         return render(request, 'question_detail.html', {'question': question, 'choices': choices, 'message': message, 'is_answered_correctly': is_answered_correctly, 'current_question_id': question_id, "last_question_id": last_question_id, "is_last_question": is_last_question, "is_first_question": is_first_question})
+    else:
+        return HttpResponseRedirect('login')
+
+
+def road_signs_page(request):
+    if not isinstance(request.user, AnonymousUser):
+        road_signs = RoadSign.objects.all()
+        road_signs_texts = RoadSignText.objects.select_related('sub_title').all()
+        return render(request, 'road_signs_page.html', {'road_signs': road_signs,"road_signs_texts":road_signs_texts})
     else:
         return HttpResponseRedirect('login')

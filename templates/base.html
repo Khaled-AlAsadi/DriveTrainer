@@ -26,6 +26,9 @@
         <li class="nav-item {% if request.path == '/trafic_rules' %}active{% endif %}">
           <a class="nav-link" href="/trafic_rules">TrafikRegler</a>
         </li>
+        <li class="nav-item {% if request.path == '/road_signs' %}active{% endif %}">
+          <a class="nav-link" href="/road_signs">Väggmärken</a>
+        </li>
         <li class="nav-item {% if request.path == '/logout' %}active{% endif %}">
           <a class="nav-link" href="{% url 'logout' %}">logga ut</a>
         </li>
@@ -37,7 +40,7 @@
       </ul>
     </div>
   </nav>
-  <main class="container">
+  <main class="container my-5">
     {% block content %}
     {% endblock %}
   </main>
