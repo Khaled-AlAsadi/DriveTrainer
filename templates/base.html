@@ -24,14 +24,14 @@
         </li>
         {% if user.is_authenticated %}     
         <li class="nav-item">
-          <a class="nav-link" href="/trafic_rules">trafikregler</a>
+          <a class="nav-link" href="/trafic_rules">TrafikRegler</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'logout' %}">logout</a>
+          <a class="nav-link" href="{% url 'logout' %}">logga ut</a>
         </li>
         {% else %}
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'login' %}">login</a>
+          <a class="nav-link" href="{% url 'login' %}">logga in</a>
         </li>
         {% endif %}
       </ul>
