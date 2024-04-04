@@ -134,7 +134,6 @@ def trafic_rule_question_detail(request, question_id):
                 message = "Please select an answer."
 
         elif request.method == "GET":
-            print(is_answered_correctly)
             existing_answer = TraficRuleAnswer.objects.filter(
                 question=question, user=request.user).first()
             if existing_answer:
