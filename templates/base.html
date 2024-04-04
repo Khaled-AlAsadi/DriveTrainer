@@ -21,20 +21,20 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
           {% if user.is_authenticated %}
-            <li class="nav-item {% if request.path == '/' %}{% endif %}">
+            <li class="nav-item {% if request.path == '/' %}active{% endif %}">
               <a class="nav-link" href="/">Hem <span class="sr-only">(current)</span></a>
             </li>
-            <li class="nav-item {% if request.path == '/trafic_rules' %}{% endif %}">
+            <li class="nav-item {% if request.path == '/trafic_rules' %}active{% endif %}">
               <a class="nav-link" href="/trafic_rules">TrafikRegler</a>
             </li>
-            <li class="nav-item {% if request.path == '/road_signs' %}{% endif %}">
+            <li class="nav-item {% if request.path == '/road_signs' %}active{% endif %}">
               <a class="nav-link" href="/road_signs">Väggmärken</a>
             </li>
-            <li class="nav-item {% if request.path == '/logout' %}{% endif %}">
+            <li class="nav-item {% if request.path == '/logout' %}active{% endif %}">
               <a class="nav-link" href="{% url 'logout' %}">logga ut</a>
             </li>
           {% else %}
-            <li class="nav-item {% if request.path == '/login' %}{% endif %}">
+            <li class="nav-item {% if request.path == '/login' %}active{% endif %}">
               <a class="nav-link" href="{% url 'login' %}">logga in</a>
             </li>
           {% endif %}
