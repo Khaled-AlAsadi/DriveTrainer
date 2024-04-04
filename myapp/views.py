@@ -1,9 +1,9 @@
-from urllib.request import HTTPRedirectHandler
 from django.http import Http404, HttpResponseRedirect
 from django.shortcuts import redirect, render
-from .models import RoadSignAnswer, RoadSignQuestion, RoadSignText, TraficRule, TraficRuleAnswer, TraficRuleChoice, TraficRuleQuestion, TraficRuleText,RoadSign
+from .models import RoadSignAnswer, RoadSignQuestion, TraficRule, TraficRuleAnswer, TraficRuleChoice, TraficRuleQuestion,RoadSign
 from django.contrib.auth.models import AnonymousUser
 from django.shortcuts import get_object_or_404
+from django.core.paginator import Paginator
 
 # Create your views here.
 
@@ -37,9 +37,12 @@ def index(request):
 
 def trafic_rules(request):
     if not isinstance(request.user, AnonymousUser):
-        rules = TraficRule.objects.all()
-        rules_texts = TraficRuleText.objects.select_related('sub_title').all()
-        return render(request, 'trafic_rules.html', {"rules": rules, "rule_texts": rules_texts})
+        rules = TraficRule.objects.all().prefetch_related('traficruletext_set')
+        paginated = Paginator(rules, 1)
+        page_number = request.GET.get('page')
+
+        page = paginated.get_page(page_number)
+        return render(request, 'trafic_rules.html', {'page': page})
     else:
         return HttpResponseRedirect('login')
 
@@ -148,8 +151,11 @@ def trafic_rule_question_detail(request, question_id):
 
 def road_signs_page(request):
     if not isinstance(request.user, AnonymousUser):
-        road_signs = RoadSign.objects.all()
-        road_signs_texts = RoadSignText.objects.select_related('sub_title').all()
-        return render(request, 'road_signs_page.html', {'road_signs': road_signs,"road_signs_texts":road_signs_texts})
+        road_signs = RoadSign.objects.all().prefetch_related("roadsigntext_set")
+        paginated = Paginator(road_signs, 1)
+        page_number = request.GET.get('page')
+        page = paginated.get_page(page_number)
+
+        return render(request, 'road_signs_page.html', {'page': page})
     else:
         return HttpResponseRedirect('login')
