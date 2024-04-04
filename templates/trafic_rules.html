@@ -1,16 +1,18 @@
-{% extends "base.html" %}
-{% block title %}DriveTrainer - Trafikregler sida{% endblock %}
+{% extends 'base.html' %}
+{% block title %}
+  DriveTrainer - Trafikregler sida
+{% endblock %}
 {% block content %}
-    {% for rule in rules %}
+  {% for rule in rules %}
     <div class="container">
-        <h2>{{rule.title }}</h2>
-            {% for rule_text in rule_texts %}
-                {% if rule_text.sub_title == rule %}
-                    <p>{{ rule_text.text }}</p>
-                    <img class="img-fluid" src="{{ rule_text.image_link}}">
-                    <p>{{ rule_text.sub_text}}</p>
-                {% endif %}
-            {% endfor %}    
+      <h2>{{ rule.title }}</h2>
+      {% for rule_text in rule_texts %}
+        {% if rule_text.sub_title == rule %}
+          <p>{{ rule_text.text }}</p>
+          <img class="img-fluid" src="{{ rule_text.image_link }}" />
+          <p>{{ rule_text.sub_text }}</p>
+        {% endif %}
+      {% endfor %}
     </div>
-    {% endfor %}
+  {% endfor %}
 {% endblock %}

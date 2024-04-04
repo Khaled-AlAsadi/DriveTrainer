@@ -1,19 +1,21 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
 
-{% block title %}DriveTrainer - Väggmärken{% endblock %}
+{% block title %}
+  DriveTrainer - Väggmärken
+{% endblock %}
 
 {% block content %}
-{% if user.is_authenticated %}
-{% for road_sign in road_signs %}
-<div class="container">
-    <h2>{{road_sign.title }}</h2>
+  {% if user.is_authenticated %}
+    {% for road_sign in road_signs %}
+      <div class="container">
+        <h2>{{ road_sign.title }}</h2>
         {% for road_sign_text in road_signs_texts %}
-            {% if road_sign_text.sub_title == road_sign %}
-                <p>{{ road_sign_text.text }}</p>
-                <img id="road_signs_pictures" class="img-fluid" src="{{ road_sign_text.image_link}}">
-            {% endif %}
-        {% endfor %}    
-</div>
-{% endfor %}
-{% endif %}
+          {% if road_sign_text.sub_title == road_sign %}
+            <p>{{ road_sign_text.text }}</p>
+            <img id="road_signs_pictures" class="img-fluid" src="{{ road_sign_text.image_link }}" />
+          {% endif %}
+        {% endfor %}
+      </div>
+    {% endfor %}
+  {% endif %}
 {% endblock %}

@@ -1,9 +1,11 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
 
-{% block title %}Sparade Frågor sida{% endblock %}
+{% block title %}
+  Sparade Frågor sida
+{% endblock %}
 
 {% block content %}
-{% for saved_question in saved_questions %}
-    <li>{{saved_question}}</li>
-{% endfor %}
+  {% for saved_question in saved_questions %}
+    <li>{{ saved_question }}</li>
+  {% endfor %}
 {% endblock %}
