@@ -1,6 +1,6 @@
 from django.http import Http404, HttpResponseRedirect
 from django.shortcuts import redirect, render
-from .models import RoadSignAnswer, RoadSignQuestion, TraficRule, TraficRuleAnswer, TraficRuleChoice, TraficRuleQuestion,RoadSign
+from .models import  TraficRule, TraficRuleAnswer, TraficRuleChoice, TraficRuleQuestion,RoadSign
 from django.contrib.auth.models import AnonymousUser
 from django.shortcuts import get_object_or_404
 from django.core.paginator import Paginator
@@ -12,17 +12,8 @@ def index(request):
     if not isinstance(request.user, AnonymousUser):
         questions = TraficRuleQuestion.objects.all()
         total_traficRules_questions = TraficRuleQuestion.objects.count()
-        total_roadSigns_questions = RoadSignQuestion.objects.count()
         answered_questions = TraficRuleAnswer.objects.filter(
             user=request.user, is_answered=True).count()
-
-        answered_roadSignQuestions_questions = RoadSignAnswer.objects.filter(
-            user=request.user, is_answered=True).count()
-        if answered_roadSignQuestions_questions > 0:
-            answered_roadSignQuestions_questions = (
-                answered_roadSignQuestions_questions / total_roadSigns_questions) * 100
-        else:
-            answered_roadSignQuestions_questions = 0
 
         if total_traficRules_questions > 0:
             progress_percentage = (
@@ -30,14 +21,14 @@ def index(request):
         else:
             progress_percentage = 0
 
-        return render(request, 'home.html', {"questions": questions, "progress_percentage": int(progress_percentage), "answered_roadSignQuestions_questions": int(answered_roadSignQuestions_questions)})
+        return render(request, 'home.html', {"questions": questions, "progress_percentage": int(progress_percentage)})
     else:
         return HttpResponseRedirect('login')
 
 
 def trafic_rules(request):
     if not isinstance(request.user, AnonymousUser):
-        rules = TraficRule.objects.all().prefetch_related('traficruletext_set')
+        rules = TraficRule.objects.all()
         paginated = Paginator(rules, 1)
         page_number = request.GET.get('page')
 
@@ -151,7 +142,7 @@ def trafic_rule_question_detail(request, question_id):
 
 def road_signs_page(request):
     if not isinstance(request.user, AnonymousUser):
-        road_signs = RoadSign.objects.all().prefetch_related("roadsigntext_set")
+        road_signs = RoadSign.objects.all()
         paginated = Paginator(road_signs, 1)
         page_number = request.GET.get('page')
         page = paginated.get_page(page_number)

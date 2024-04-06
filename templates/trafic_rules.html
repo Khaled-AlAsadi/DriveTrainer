@@ -6,11 +6,9 @@
   {% for rule in page %}
     <div class="container">
       <h2>{{ rule.title }}</h2>
-      {% for rule_text in rule.traficruletext_set.all %}
-        <p>{{ rule_text.text }}</p>
-        <img class="img-fluid" src="{{ rule_text.image_link }}" />
-        <p>{{ rule_text.sub_text }}</p>
-      {% endfor %}
+        <p>{{ rule.sub_title }}</p>
+        <img class="img-fluid" src="{{ rule.image_link }}" />
+        <p>{{ rule.sub_text }}</p>
     </div>
   {% endfor %}
 
