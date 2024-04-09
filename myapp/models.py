@@ -30,18 +30,18 @@ class TraficRuleAnswer(models.Model):
         return self.question.question_text
 
 class TraficRule(models.Model):
-    title = models.CharField(validators=[MinLengthValidator(5), MaxLengthValidator(400)])
-    sub_title =models.CharField(validators=[MinLengthValidator(5), MaxLengthValidator(400)])
+    title = models.CharField(max_length=400,validators=[MinLengthValidator(5), MaxLengthValidator(400)])
+    sub_title =models.CharField(max_length=400,validators=[MinLengthValidator(5), MaxLengthValidator(400)])
     sub_text = models.TextField(validators=[MinLengthValidator(5), MaxLengthValidator(1000)],default="Default sub_text")
-    image_link = models.CharField(validators=[MinLengthValidator(5), MaxLengthValidator(500)])
+    image_link = models.CharField(max_length=400,validators=[MinLengthValidator(5), MaxLengthValidator(500)])
     def __str__(self):
         return self.title
     
     
 class RoadSign(models.Model):
-    title = models.CharField(validators=[MinLengthValidator(5), MaxLengthValidator(400)])
+    title = models.CharField(max_length=400,validators=[MinLengthValidator(5), MaxLengthValidator(400)])
     description = models.TextField(validators=[MinLengthValidator(10), MaxLengthValidator(800)],default="Default sub_text")
-    image_link = models.CharField(validators=[MinLengthValidator(10), MaxLengthValidator(500)])
+    image_link = models.CharField(max_length=400,validators=[MinLengthValidator(10), MaxLengthValidator(500)])
     def __str__(self):
         return self.title
 
