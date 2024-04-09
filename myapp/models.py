@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.core.validators import MinLengthValidator, MaxLengthValidator
 
 
 class TraficRuleQuestion(models.Model):
@@ -29,18 +30,24 @@ class TraficRuleAnswer(models.Model):
         return self.question.question_text
 
 class TraficRule(models.Model):
-    title = models.CharField(max_length=400)
-    sub_title =models.CharField(null=True,blank=True,max_length=400)
-    sub_text = models.CharField(null=True,blank=True,max_length=1000,default="Default sub_text")
-    image_link = models.CharField(null=False,blank=False,max_length=1000)
+    title = models.CharField(validators=[MinLengthValidator(5), MaxLengthValidator(400)])
+    sub_title =models.CharField(validators=[MinLengthValidator(5), MaxLengthValidator(400)])
+    sub_text = models.TextField(validators=[MinLengthValidator(5), MaxLengthValidator(1000)],default="Default sub_text")
+    image_link = models.CharField(validators=[MinLengthValidator(5), MaxLengthValidator(500)])
     def __str__(self):
         return self.title
     
     
 class RoadSign(models.Model):
-    title = models.CharField(max_length=400)
-    description = models.CharField(null=False,blank=False,max_length=1000,default="Default sub_text")
-    image_link = models.CharField(null=False,blank=False,max_length=1000)
+    title = models.CharField(validators=[MinLengthValidator(5), MaxLengthValidator(400)])
+    description = models.TextField(validators=[MinLengthValidator(10), MaxLengthValidator(800)],default="Default sub_text")
+    image_link = models.CharField(validators=[MinLengthValidator(10), MaxLengthValidator(500)])
     def __str__(self):
         return self.title
-    
+
+class createRoadSign(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    road_sign = models.ForeignKey(RoadSign, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"{self.user.username}'s RoadSign: {self.road_sign.title}"
