@@ -4,16 +4,16 @@ from django.core.validators import MinLengthValidator, MaxLengthValidator
 
 
 class TraficRuleQuestion(models.Model):
-    question_text = models.CharField(max_length=500)
+    question_text = models.CharField(max_length=500,validators=[MinLengthValidator(5), MaxLengthValidator(400)])
     pub_date = models.DateTimeField('date published')
     is_saved = models.BooleanField(default=False)
-    link = models.CharField(max_length=500,default="")
+    link = models.CharField(max_length=500,default="",validators=[MinLengthValidator(5), MaxLengthValidator(400)])
     def __str__(self):
         return self.question_text
 
 class TraficRuleChoice(models.Model):
     question = models.ForeignKey(TraficRuleQuestion, on_delete=models.CASCADE)
-    choice_text = models.CharField(max_length=200)
+    choice_text = models.CharField(max_length=200,validators=[MinLengthValidator(5), MaxLengthValidator(400)])
     is_correct = models.BooleanField(default=False)
 
     def __str__(self):
@@ -44,10 +44,3 @@ class RoadSign(models.Model):
     image_link = models.CharField(max_length=400,validators=[MinLengthValidator(10), MaxLengthValidator(500)])
     def __str__(self):
         return self.title
-
-class createRoadSign(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    road_sign = models.ForeignKey(RoadSign, on_delete=models.CASCADE)
-
-    def __str__(self):
-        return f"{self.user.username}'s RoadSign: {self.road_sign.title}"
