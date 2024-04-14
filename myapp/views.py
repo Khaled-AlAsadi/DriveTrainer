@@ -1,4 +1,4 @@
-from django.http import Http404, HttpResponseRedirect
+from django.http import Http404, HttpResponseRedirect, JsonResponse
 from django.shortcuts import redirect, render
 
 from myapp.forms import RoadSignForm
@@ -148,21 +148,11 @@ def road_signs_page(request):
         paginated = Paginator(road_signs, 1)
         page_number = request.GET.get('page')
         page = paginated.get_page(page_number)
-
-        return render(request, 'road_signs_page.html', {'page': page})
+        form = RoadSignForm(request.POST)
+        if form.is_valid():
+            road_sign = form.save(commit=False)
+            road_sign.save()
+            return render(request, 'road_signs_page.html', {'page': page})
+        return render(request, 'road_signs_page.html', {'page': page, 'form': form})
     else:
         return HttpResponseRedirect('login')
-
-
-def create_roadsign_view(request):
-    # dictionary for initial data with
-    # field names as keys
-    context = {}
-
-    # add the dictionary during initialization
-    form = RoadSignForm(request.POST or None)
-    if form.is_valid():
-        form.save()
-
-    context['form'] = form
-    return render(request, "create_view.html", context)

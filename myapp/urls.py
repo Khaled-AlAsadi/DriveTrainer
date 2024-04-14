@@ -16,6 +16,6 @@ urlpatterns = [
          views.previous_question, name='previous_question'),
      path('road_signs',
          views.road_signs_page, name='road_signs'),
-     path('road_signs/add',
-         views.create_roadsign_view, name='road_signs/add'),
+     path('road-signs/', views.road_signs_page, name='road_signs_page'),
+
 ]
