@@ -1,6 +1,8 @@
 from django.http import Http404, HttpResponseRedirect
 from django.shortcuts import redirect, render
-from .models import  TraficRule, TraficRuleAnswer, TraficRuleChoice, TraficRuleQuestion,RoadSign
+
+from myapp.forms import RoadSignForm
+from .models import TraficRule, TraficRuleAnswer, TraficRuleChoice, TraficRuleQuestion, RoadSign
 from django.contrib.auth.models import AnonymousUser
 from django.shortcuts import get_object_or_404
 from django.core.paginator import Paginator
@@ -150,3 +152,17 @@ def road_signs_page(request):
         return render(request, 'road_signs_page.html', {'page': page})
     else:
         return HttpResponseRedirect('login')
+
+
+def create_roadsign_view(request):
+    # dictionary for initial data with
+    # field names as keys
+    context = {}
+
+    # add the dictionary during initialization
+    form = RoadSignForm(request.POST or None)
+    if form.is_valid():
+        form.save()
+
+    context['form'] = form
+    return render(request, "create_view.html", context)
