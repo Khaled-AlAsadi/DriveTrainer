@@ -1,4 +1,4 @@
-from django.http import Http404, HttpResponseRedirect, JsonResponse
+from django.http import Http404,HttpResponseRedirect
 from django.shortcuts import redirect, render
 
 from myapp.forms import RoadSignForm
@@ -148,11 +148,6 @@ def road_signs_page(request):
         paginated = Paginator(road_signs, 1)
         page_number = request.GET.get('page')
         page = paginated.get_page(page_number)
-        form = RoadSignForm(request.POST)
-        if form.is_valid():
-            road_sign = form.save(commit=False)
-            road_sign.save()
-            return render(request, 'road_signs_page.html', {'page': page})
-        return render(request, 'road_signs_page.html', {'page': page, 'form': form})
+        return render(request, 'road_signs_page.html', {'page': page})
     else:
         return HttpResponseRedirect('login')

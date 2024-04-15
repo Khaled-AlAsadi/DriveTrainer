@@ -6,27 +6,7 @@
 
 {% block content %}
   {% if user.is_authenticated %}
-  <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="addModalLabel">Add Road Sign</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <form id="addForm" method="POST" enctype="multipart/form-data">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit" class="btn btn-primary">Submit</button>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-  <a href="#" data-toggle="modal" data-target="#addModal">Add</a>
-
+ 
     {% for road_sign in page %}
       <div class="container">
         <h2>{{ road_sign.title }}</h2>
@@ -55,27 +35,4 @@
   {% if page.has_next %}
     <a href="?page={{ page.next_page_number }}" class="btn btn-secondary mx-2">Next</a>
   {% endif %}
-  <script>
-    $(document).ready(function () {
-      $('#addForm').on('submit', function (e) {
-        e.preventDefault(); // Prevent normal form submission
-        
-        // AJAX POST request to submit the form data
-        $.ajax({
-          type: 'POST',
-          url: '{% url "road_signs_page" %}',
-          data: $('#addForm').serialize(),
-          success: function () {
-            // Close the modal after successful form submission
-            $('#addModal').modal('hide');
-            location.reload(); // This will reload the page
-          },
-          error: function () {
-            // Handle errors if any
-            alert('An error occurred. Please try again.');
-          }
-        });
-      });
-    });
-  </script>
 {% endblock %}
