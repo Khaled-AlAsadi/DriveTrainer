@@ -165,3 +165,55 @@ def create_roadSign_view(request):
 
     context['form']= form
     return render(request, "create_roadSign_view.html", context)
+
+
+# delete view for details
+def delete_roadSign_view(request, id):
+    # dictionary for initial data with 
+    # field names as keys
+    context ={}
+ 
+    # fetch the object related to passed id
+    obj = get_object_or_404(RoadSign, id = id)
+ 
+ 
+    if request.method =="POST":
+        # delete object
+        obj.delete()
+        # after deleting redirect to 
+        # home page
+        return redirect('road_signs')
+ 
+    return render(request, "delete_roadsign_view.html", context)
+
+
+
+def detail_view(request, id):
+    # dictionary for initial data with 
+    # field names as keys
+    context ={}
+  
+    # add the dictionary during initialization
+    context["data"] = RoadSignForm.objects.get(id = id)
+          
+    return render(request, "detail_view.html", context)
+
+# update view for details
+def update_roadSign_view(request, id):
+    context = {}
+
+    # Fetch the object related to the passed id
+    obj = get_object_or_404(RoadSign, id=id)
+
+    # Pass the object as an instance in the form
+    form = RoadSignForm(request.POST or None, instance=obj)
+
+    # Save the data from the form and redirect to detail_view
+    if form.is_valid():
+        form.save()
+        return redirect('road_signs')
+
+    # Add form dictionary to context
+    context["form"] = form
+
+    return render(request, "update_roadsign_view.html", context)

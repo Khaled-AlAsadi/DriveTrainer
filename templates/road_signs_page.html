@@ -13,6 +13,10 @@
         <h2>{{ road_sign.title }}</h2>
         <img id="road_signs_pictures" class="img-fluid" src="{{ road_sign.image_link }}" />
         <p>{{  road_sign.description  }}</p>
+        <p>{{road_sign.id}}</p>
+        <a href="{% url 'roadsign_delete' id=road_sign.id %}">Ta bort</a>
+        <a href="{% url 'update_roadSign_view' id=road_sign.id %}">Update</a>
+
       </div>
     {% endfor %}
   {% endif %}
