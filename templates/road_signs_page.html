@@ -6,7 +6,8 @@
 
 {% block content %}
   {% if user.is_authenticated %}
- 
+  <a href="{% url 'road_signs/create' %}">Add</a>
+
     {% for road_sign in page %}
       <div class="container">
         <h2>{{ road_sign.title }}</h2>

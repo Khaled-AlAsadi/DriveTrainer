@@ -151,3 +151,17 @@ def road_signs_page(request):
         return render(request, 'road_signs_page.html', {'page': page})
     else:
         return HttpResponseRedirect('login')
+
+def create_roadSign_view(request):
+    # dictionary for initial data with 
+    # field names as keys
+    context ={}
+ 
+    # add the dictionary during initialization
+    form = RoadSignForm(request.POST or None)
+    if form.is_valid():
+        form.save()
+        return redirect('road_signs')
+
+    context['form']= form
+    return render(request, "create_roadSign_view.html", context)
