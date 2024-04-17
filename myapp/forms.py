@@ -1,5 +1,5 @@
 from django import forms
-from .models import RoadSign
+from .models import RoadSign, TraficRule
  
  
 # creating a form
@@ -15,4 +15,15 @@ class RoadSignForm(forms.ModelForm):
             "title",
             "description",
             "image_link",
+        ]
+
+class TraficRuleForm(forms.ModelForm):
+    class Meta:
+        model = TraficRule
+        
+        fields = [
+            "title",
+            "sub_title",
+            "sub_text",
+            "image_link"
         ]
