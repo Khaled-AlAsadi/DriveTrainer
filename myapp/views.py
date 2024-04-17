@@ -188,15 +188,6 @@ def delete_roadSign_view(request, id):
 
 
 
-def detail_view(request, id):
-    # dictionary for initial data with 
-    # field names as keys
-    context ={}
-  
-    # add the dictionary during initialization
-    context["data"] = RoadSignForm.objects.get(id = id)
-          
-    return render(request, "detail_view.html", context)
 
 # update view for details
 def update_roadSign_view(request, id):
@@ -207,7 +198,6 @@ def update_roadSign_view(request, id):
 
     # Pass the object as an instance in the form
     form = RoadSignForm(request.POST or None, instance=obj)
-
     # Save the data from the form and redirect to detail_view
     if form.is_valid():
         form.save()
