@@ -20,5 +20,6 @@ urlpatterns = [
          views.create_roadSign_view, name='road_signs/create'),
     path('<int:id>/delete/', views.delete_roadSign_view, name='roadsign_delete'),
     path('update/<int:id>/', views.update_roadSign_view, name='update_roadSign_view'),
-
+    path('trafic_rule/create',
+         views.create_traficrule_view, name='trafic_rule/create'),
 ]

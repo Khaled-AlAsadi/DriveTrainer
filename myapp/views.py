@@ -1,7 +1,7 @@
 from django.http import Http404,HttpResponseRedirect
 from django.shortcuts import redirect, render
 
-from myapp.forms import RoadSignForm
+from myapp.forms import RoadSignForm, TraficRuleForm
 from .models import TraficRule, TraficRuleAnswer, TraficRuleChoice, TraficRuleQuestion, RoadSign
 from django.contrib.auth.models import AnonymousUser
 from django.shortcuts import get_object_or_404
@@ -152,6 +152,7 @@ def road_signs_page(request):
     else:
         return HttpResponseRedirect('login')
 
+# create view for RoadSign
 def create_roadSign_view(request):
     # dictionary for initial data with 
     # field names as keys
@@ -166,8 +167,7 @@ def create_roadSign_view(request):
     context['form']= form
     return render(request, "create_roadSign_view.html", context)
 
-
-# delete view for details
+# delete view for RoadSign
 def delete_roadSign_view(request, id):
     # dictionary for initial data with 
     # field names as keys
@@ -189,7 +189,7 @@ def delete_roadSign_view(request, id):
 
 
 
-# update view for details
+# update view for RoadSign
 def update_roadSign_view(request, id):
     context = {}
 
@@ -207,3 +207,20 @@ def update_roadSign_view(request, id):
     context["form"] = form
 
     return render(request, "update_roadsign_view.html", context)
+
+
+# create view for RoadSign
+def create_traficrule_view(request):
+    # dictionary for initial data with 
+    # field names as keys
+    context ={}
+ 
+    # add the dictionary during initialization
+    form = TraficRuleForm(request.POST or None)
+    if form.is_valid():
+        form.save()
+        return redirect('trafic_rules')
+
+    context['form']= form
+    return render(request, "create_traficrule_view.html", context)
+
