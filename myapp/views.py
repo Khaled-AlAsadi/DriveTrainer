@@ -209,7 +209,7 @@ def update_roadSign_view(request, id):
     return render(request, "update_roadsign_view.html", context)
 
 
-# create view for RoadSign
+# create view for TraficRule
 def create_traficrule_view(request):
     # dictionary for initial data with 
     # field names as keys
@@ -224,3 +224,18 @@ def create_traficrule_view(request):
     context['form']= form
     return render(request, "create_traficrule_view.html", context)
 
+
+# delete view for TraficRule
+def delete_traficrule_view(request, id):
+    context = {}
+
+    # Fetch the TraficRule object related to the passed id
+    obj = get_object_or_404(TraficRule, id=id)
+
+    if request.method == "POST":
+        # Delete the object
+        obj.delete()
+        # After deleting, redirect to the home page
+        return redirect('trafic_rules')
+
+    return render(request, "delete_traficrule_view.html", context)
