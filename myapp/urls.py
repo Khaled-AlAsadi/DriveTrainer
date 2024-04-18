@@ -22,4 +22,5 @@ urlpatterns = [
     path('update/<int:id>/', views.update_roadSign_view, name='update_roadSign_view'),
     path('trafic_rule/create',
          views.create_traficrule_view, name='trafic_rule/create'),
+     path('delete/<int:id>/', views.delete_traficrule_view, name='traficrule_delete'),
 ]
