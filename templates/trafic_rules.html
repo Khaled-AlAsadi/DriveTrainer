@@ -13,6 +13,7 @@
         <img class="img-fluid" src="{{ rule.image_link }}" />
         <p>{{ rule.sub_text }}</p>
         <p>{{ rule.id }}</p>
+        <a href="{% url 'update_traficRule_view' id=rule.id %}">Update</a>
         <a href="{% url 'traficrule_delete' id=rule.id %}">Ta bort</a>
     </div>
   {% endfor %}

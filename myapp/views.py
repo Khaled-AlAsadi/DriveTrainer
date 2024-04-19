@@ -186,9 +186,6 @@ def delete_roadSign_view(request, id):
  
     return render(request, "delete_roadsign_view.html", context)
 
-
-
-
 # update view for RoadSign
 def update_roadSign_view(request, id):
     context = {}
@@ -239,3 +236,22 @@ def delete_traficrule_view(request, id):
         return redirect('trafic_rules')
 
     return render(request, "delete_traficrule_view.html", context)
+
+# update view for RoadSign
+def update_traficRule_view(request, id):
+    context = {}
+
+    # Fetch the object related to the passed id
+    obj = get_object_or_404(TraficRule, id=id)
+
+    # Pass the object as an instance in the form
+    form = TraficRuleForm(request.POST or None, instance=obj)
+    # Save the data from the form and redirect to detail_view
+    if form.is_valid():
+        form.save()
+        return redirect('trafic_rules')
+
+    # Add form dictionary to context
+    context["form"] = form
+
+    return render(request, "update_roadsign_view.html", context)

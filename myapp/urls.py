@@ -23,4 +23,5 @@ urlpatterns = [
     path('trafic_rule/create',
          views.create_traficrule_view, name='trafic_rule/create'),
      path('delete/<int:id>/', views.delete_traficrule_view, name='traficrule_delete'),
+    path('update/traficrule/<int:id>/', views.update_traficRule_view, name='update_traficRule_view'),
 ]
