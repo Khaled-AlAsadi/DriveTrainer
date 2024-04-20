@@ -1,3 +1,7 @@
+{% extends "base.html" %}
+
+{% block title %}DriveTrainer - Skapa trafikregel {% endblock %}
+{% block content %}
 <form method="POST" enctype="multipart/form-data">
  
     <!-- Security token -->
@@ -9,3 +13,4 @@
     <input type="submit" value="Submit">
     <a href="/trafic_rules">Cancel </a>
 </form>
+{% endblock %}
