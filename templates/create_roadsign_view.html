@@ -1,3 +1,7 @@
+{% extends "base.html" %}
+
+{% block title %}DriveTrainer - Skapa väggmärke {% endblock %}
+{% block content %}
 <form method="POST" enctype="multipart/form-data">
  
     <!-- Security token -->
@@ -7,5 +11,6 @@
     {{ form.as_p }}
      
     <input type="submit" value="Submit">
-    <a href="/road_signs">Cancel </a>
+    <a href="/road_signs">Avbryt </a>
 </form>
+{% endblock %}
