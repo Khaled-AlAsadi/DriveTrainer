@@ -8,7 +8,7 @@ from django.shortcuts import get_object_or_404
 from django.core.paginator import Paginator
 
 # Create your views here.
-
+PAGENUMBER = 1
 
 def index(request):
     if not isinstance(request.user, AnonymousUser):
@@ -29,12 +29,14 @@ def index(request):
 
 
 def trafic_rules(request):
+    global PAGENUMBER
     if not isinstance(request.user, AnonymousUser):
         rules = TraficRule.objects.all()
         paginated = Paginator(rules, 1)
         page_number = request.GET.get('page')
 
         page = paginated.get_page(page_number)
+        PAGENUMBER = page_number
         return render(request, 'trafic_rules.html', {'page': page})
     else:
         return HttpResponseRedirect('login')
@@ -218,13 +220,13 @@ def delete_traficrule_view(request, id):
 
     # Fetch the TraficRule object related to the passed id
     obj = get_object_or_404(TraficRule, id=id)
-
+    
     if request.method == "POST":
         # Delete the object
         obj.delete()
         # After deleting, redirect to the home page
         return redirect('trafic_rules')
-
+    context["PAGENUMBER"] = PAGENUMBER
     return render(request, "delete_traficrule_view.html", context)
 
 # update view for RoadSign
