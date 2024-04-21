@@ -135,10 +135,12 @@ def trafic_rule_question_detail(request, question_id):
 
 
 def road_signs_page(request):
+    global PAGENUMBER
     if not isinstance(request.user, AnonymousUser):
         road_signs = RoadSign.objects.all()
         paginated = Paginator(road_signs, 1)
         page_number = request.GET.get('page')
+        PAGENUMBER = page_number
         page = paginated.get_page(page_number)
         return render(request, 'road_signs_page.html', {'page': page})
     else:
@@ -175,7 +177,7 @@ def delete_roadSign_view(request, id):
         # after deleting redirect to 
         # home page
         return redirect('road_signs')
- 
+    context["PAGENUMBER"] = PAGENUMBER
     return render(request, "delete_roadsign_view.html", context)
 
 # update view for RoadSign
