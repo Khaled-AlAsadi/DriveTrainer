@@ -39,16 +39,6 @@ def trafic_rules(request):
     else:
         return HttpResponseRedirect('login')
 
-
-def saved_questions(request):
-    if not isinstance(request.user, AnonymousUser):
-        if request.method == "GET":
-            saved_questions = TraficRuleQuestion.objects.filter(is_saved=True)
-            return render(request, 'saved_questions.html', {'saved_questions': saved_questions})
-    else:
-        return HttpResponseRedirect('login')
-
-
 def start_quiz(request):
     first_question = TraficRuleQuestion.objects.first()
     return redirect('trafic_rule_question_detail', question_id=first_question.id)
