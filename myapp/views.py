@@ -159,6 +159,8 @@ def create_roadSign_view(request):
         return redirect('road_signs')
 
     context['form']= form
+    context["PAGENUMBER"] = PAGENUMBER
+
     return render(request, "create_roadSign_view.html", context)
 
 # delete view for RoadSign
@@ -196,6 +198,7 @@ def update_roadSign_view(request, id):
 
     # Add form dictionary to context
     context["form"] = form
+    context["PAGENUMBER"] = PAGENUMBER
 
     return render(request, "update_roadsign_view.html", context)
 
@@ -213,6 +216,7 @@ def create_traficrule_view(request):
         return redirect('trafic_rules')
 
     context['form']= form
+    context["PAGENUMBER"] = PAGENUMBER
     return render(request, "create_traficrule_view.html", context)
 
 
@@ -247,5 +251,5 @@ def update_traficRule_view(request, id):
 
     # Add form dictionary to context
     context["form"] = form
-
-    return render(request, "update_roadsign_view.html", context)
+    context["PAGENUMBER"] = PAGENUMBER
+    return render(request, "update_traficrule_view.html", context)

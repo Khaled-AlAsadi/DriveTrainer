@@ -11,6 +11,10 @@
     {{ form.as_p }}
      
     <input type="submit" value="Submit">
-    <a href="/road_signs">Avbryt </a>
+    {% if PAGENUMBER is None %}
+        <a href="/road_signs">Cancel </a>
+    {% else %}
+        <a href="/road_signs?page={{PAGENUMBER}}">Cancel </a>
+    {% endif %}
 </form>
 {% endblock %}
