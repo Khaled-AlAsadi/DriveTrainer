@@ -2,19 +2,19 @@
 
 {% block title %}DriveTrainer - Skapa trafikregel {% endblock %}
 {% block content %}
-<form method="POST" enctype="multipart/form-data">
- 
+    <form method="POST" enctype="multipart/form-data">
+
     <!-- Security token -->
-    {% csrf_token %}
- 
+        {% csrf_token %}
+
     <!-- Using the formset -->
-    {{ form.as_p }}
-     
-    <input type="submit" value="Submit">
-    {% if PAGENUMBER is None %}
-        <a href="/trafic_rules">Cancel </a>
-    {% else %}
-        <a href="/trafic_rules?page={{PAGENUMBER}}">Cancel </a>
-    {% endif %}
-</form>
+        {{ form.as_p }}
+
+        <input type="submit" value="Submit">
+        {% if PAGENUMBER is None %}
+            <a href="/trafic_rules">Cancel </a>
+        {% else %}
+            <a href="/trafic_rules?page={{PAGENUMBER}}">Cancel </a>
+        {% endif %}
+    </form>
 {% endblock %}

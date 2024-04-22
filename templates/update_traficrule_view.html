@@ -2,22 +2,22 @@
 
 {% block title %}DriveTrainer - Uppdatera trafikregel {% endblock %}
 {% block content %}
-<div class="main">
+    <div class="main">
     <!-- Create a Form -->
-    <form method="POST">
+        <form method="POST">
         <!-- Security token by Django -->
-        {% csrf_token %}
- 
+            {% csrf_token %}
+
         <!-- form as paragraph -->
-        {{ form.as_p }}
- 
-        <input type="submit" value="Update">
-        {% if PAGENUMBER is None %}
-            <a href="/trafic_rules">Cancel </a>
-        {% else %}
-            <a href="/trafic_rules?page={{PAGENUMBER}}">Cancel </a>
-        {% endif %}
-    </form>
- 
-</div>
+            {{ form.as_p }}
+
+            <input type="submit" value="Update">
+            {% if PAGENUMBER is None %}
+                <a href="/trafic_rules">Cancel </a>
+            {% else %}
+                <a href="/trafic_rules?page={{PAGENUMBER}}">Cancel </a>
+            {% endif %}
+        </form>
+
+    </div>
 {% endblock %}

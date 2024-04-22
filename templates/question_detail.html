@@ -2,38 +2,38 @@
 
 {% block title %}DriveTrainer - Trafikregler - Quiz{% endblock %}
 {% block content %}
-<div class="container">
-    <a  href="/">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
-            <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8"/>
-        </svg>  
-        Tillbaka 
-    </a>
-    <h1>{{ question.question_text }}</h1>
-    <form method="post">
-        {% csrf_token %}
-        {% for choice in choices %}
-            <input type="radio" name="choice" value="{{ choice.id }}" {% if choice.is_selected %}checked{% endif %}> 
-            {{ choice.choice_text }}<br>
-        {% endfor %}
-        {% if not is_answered_correctly %}
-        <button type="submit" value="Submit">Submit</button>
-        {% endif %}
-        {% if message %}
-            <p>{{ message }}</p>
-        {% endif %}
-    </form>
-    <div class="button-container">
-        {% if not is_first_question %}
-        <a href="{% url 'previous_question' current_question_id=current_question_id %}" class="nextButton">
-            Previous
+    <div class="container">
+        <a  href="/">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8"/>
+            </svg>
+            Tillbaka
         </a>
-        {% endif %}
-        {% if not is_last_question %}
-        <a href="{% url 'next_question' current_question_id=current_question_id %}" class="nextButton">
-           Nästa fråga
-        </a>
-        {% endif %}
+        <h1>{{ question.question_text }}</h1>
+        <form method="post">
+            {% csrf_token %}
+            {% for choice in choices %}
+                <input type="radio" name="choice" value="{{ choice.id }}" {% if choice.is_selected %}checked{% endif %}>
+                {{ choice.choice_text }}<br>
+            {% endfor %}
+            {% if not is_answered_correctly %}
+                <button type="submit" value="Submit">Submit</button>
+            {% endif %}
+            {% if message %}
+                <p>{{ message }}</p>
+            {% endif %}
+        </form>
+        <div class="button-container">
+            {% if not is_first_question %}
+                <a href="{% url 'previous_question' current_question_id=current_question_id %}" class="nextButton">
+                    Previous
+                </a>
+            {% endif %}
+            {% if not is_last_question %}
+                <a href="{% url 'next_question' current_question_id=current_question_id %}" class="nextButton">
+                    Nästa fråga
+                </a>
+            {% endif %}
+        </div>
     </div>
-</div>
 {% endblock %}

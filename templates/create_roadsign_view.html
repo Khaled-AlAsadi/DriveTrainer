@@ -2,19 +2,19 @@
 
 {% block title %}DriveTrainer - Skapa väggmärke {% endblock %}
 {% block content %}
-<form method="POST" enctype="multipart/form-data">
- 
+    <form method="POST" enctype="multipart/form-data">
+
     <!-- Security token -->
-    {% csrf_token %}
- 
+        {% csrf_token %}
+
     <!-- Using the formset -->
-    {{ form.as_p }}
-     
-    <input type="submit" value="Submit">
-    {% if PAGENUMBER is None %}
-        <a href="/road_signs">Cancel </a>
-    {% else %}
-        <a href="/road_signs?page={{PAGENUMBER}}">Cancel </a>
-    {% endif %}
-</form>
+        {{ form.as_p }}
+
+        <input type="submit" value="Submit">
+        {% if PAGENUMBER is None %}
+            <a href="/road_signs">Cancel </a>
+        {% else %}
+            <a href="/road_signs?page={{PAGENUMBER}}">Cancel </a>
+        {% endif %}
+    </form>
 {% endblock %}

@@ -3,20 +3,20 @@
   DriveTrainer - Trafikregler sida
 {% endblock %}
 {% block content %}
-{% if user.is_authenticated %}
-<a href="{% url 'trafic_rule/create' %}">Add</a>
+  {% if user.is_authenticated %}
+    <a href="{% url 'trafic_rule/create' %}">Add</a>
 
-  {% for rule in page %}
-    <div class="container">
-      <h2>{{ rule.title }}</h2>
+    {% for rule in page %}
+      <div class="container">
+        <h2>{{ rule.title }}</h2>
         <p>{{ rule.sub_title }}</p>
         <img class="img-fluid" src="{{ rule.image_link }}" />
         <p>{{ rule.sub_text }}</p>
         <p>{{ rule.id }}</p>
         <a href="{% url 'update_traficRule_view' id=rule.id %}">Update</a>
         <a href="{% url 'traficrule_delete' id=rule.id %}">Ta bort</a>
-    </div>
-  {% endfor %}
+      </div>
+    {% endfor %}
   {% endif %}
 
   <!-- Pagination Links -->
