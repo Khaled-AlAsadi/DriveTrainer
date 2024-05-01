@@ -4,17 +4,22 @@
 {% endblock %}
 {% block content %}
   {% if user.is_authenticated %}
-    <a href="{% url 'trafic_rule/create' %}">Add</a>
+    {% if request.user.is_staff %}
 
+      <a href="{% url 'trafic_rule/create' %}">Add</a>
+    {% endif %}
     {% for rule in page %}
       <div class="container">
         <h2>{{ rule.title }}</h2>
         <p>{{ rule.sub_title }}</p>
         <img class="img-fluid" src="{{ rule.image_link }}" />
         <p>{{ rule.sub_text }}</p>
-        <p>{{ rule.id }}</p>
-        <a href="{% url 'update_traficRule_view' id=rule.id %}">Update</a>
-        <a href="{% url 'traficrule_delete' id=rule.id %}">Ta bort</a>
+        {% if request.user.is_staff %}
+          <a href="{% url 'update_traficRule_view' id=rule.id %}">Update</a>
+
+          <a href="{% url 'traficrule_delete' id=rule.id %}">Ta bort</a>
+        {% endif %}
+
       </div>
     {% endfor %}
   {% endif %}
