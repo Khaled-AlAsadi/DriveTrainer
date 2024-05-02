@@ -23,7 +23,7 @@
                     <button onclick="window.location.href='{% url 'start_quiz' %}'">
                         Starta Quiz
                     </button>
-                {% elif progress_percentage != 100 %}
+                {% elif progress_percentage != 100 and progress_percentage > 0 %}
                     <button onclick="window.location.href='{% url 'continue_quiz' %}'">
                         Fortsätt Quiz
                     </button>
