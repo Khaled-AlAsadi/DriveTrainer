@@ -7,7 +7,9 @@
 {% block content %}
   {% if user.is_authenticated %}
     {% if request.user.is_staff %}
-      <a href="{% url 'road_signs/create' %}">Add</a>
+      <div class="container">
+        <a href="{% url 'road_signs/create' %}">Add</a>
+      </div>
     {% endif %}
 
     {% for road_sign in page %}
@@ -16,8 +18,8 @@
         <img id="road_signs_pictures" class="img-fluid" src="{{ road_sign.image_link }}" />
         <p>{{  road_sign.description  }}</p>
         {% if request.user.is_staff %}
+          <a href="{% url 'update_roadSign_view' id=road_sign.id %}">Uppdatera</a>
           <a href="{% url 'roadsign_delete' id=road_sign.id %}">Ta bort</a>
-          <a href="{% url 'update_roadSign_view' id=road_sign.id %}">Update</a>
         {% endif %}
       </div>
     {% endfor %}
