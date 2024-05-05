@@ -8,7 +8,7 @@
   {% if user.is_authenticated %}
     {% if request.user.is_staff %}
       <div class="container">
-        <a href="{% url 'road_signs/create' %}">Add</a>
+        <a class="btn btn-primary" type="button" href="{% url 'road_signs/create' %}">Lägg till </a>
       </div>
     {% endif %}
 
@@ -18,8 +18,9 @@
         <img id="road_signs_pictures" class="img-fluid" src="{{ road_sign.image_link }}" />
         <p>{{  road_sign.description  }}</p>
         {% if request.user.is_staff %}
-          <a href="{% url 'update_roadSign_view' id=road_sign.id %}">Uppdatera</a>
-          <a href="{% url 'roadsign_delete' id=road_sign.id %}">Ta bort</a>
+          <a class="btn btn-primary" type="button" href="{% url 'update_roadSign_view' id=road_sign.id %}">Uppdatera</a>
+          <a type="button" class="btn btn-danger" href="{% url 'roadsign_delete' id=road_sign.id %}">Ta bort</a>
+
         {% endif %}
       </div>
     {% endfor %}

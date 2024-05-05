@@ -6,7 +6,7 @@
   {% if user.is_authenticated %}
     {% if request.user.is_staff %}
       <div class="container">
-        <a href="{% url 'trafic_rule/create' %}">Add</a>
+        <a class="btn btn-primary" type="button" href="{% url 'trafic_rule/create' %}">Lägg till</a>
       </div>
     {% endif %}
     {% for rule in page %}
@@ -18,9 +18,9 @@
         <img class="img-fluid" src="{{ rule.image_link }}" />
         <p>{{ rule.sub_text }}</p>
         {% if request.user.is_staff %}
-          <a href="{% url 'update_traficRule_view' id=rule.id %}">Uppdatera</a>
+          <a class="btn btn-primary" type="button" href="{% url 'update_traficRule_view' id=rule.id %}">Uppdatera</a>
 
-          <a href="{% url 'traficrule_delete' id=rule.id %}">Ta bort</a>
+          <a type="button" class="btn btn-danger" href="{% url 'traficrule_delete' id=rule.id %}">Ta bort</a>
         {% endif %}
 
       </div>
