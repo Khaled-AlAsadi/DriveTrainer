@@ -8,11 +8,11 @@
         <!-- Security token by Django -->
             {% csrf_token %}
             Är du säker att du vill ta bort väggemärket ?
-            <input type="button" class="btn btn-danger"  type="submit" value="Yes" />
+            <input type="button" class="btn btn-danger"  type="submit" value="Ja" />
             {% if PAGENUMBER is None %}
-                <a class="btn btn-primary" type="button" href="/road_signs">Cancel </a>
+                <a class="btn btn-primary" type="button" href="/road_signs">Avbryt </a>
             {% else %}
-                <a class="btn btn-primary" type="button" href="/road_signs?page={{PAGENUMBER}}">Cancel </a>
+                <a class="btn btn-primary" type="button" href="/road_signs?page={{PAGENUMBER}}">Avbryt </a>
             {% endif %}
         </form>
     </div>

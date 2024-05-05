@@ -4,15 +4,15 @@
 {% block content %}
     <div class="main">
     <!-- Create a Form -->
-        <form class="delete-traficrule-form" method="POST">
+        <form class="delete-traficrule-form " method="POST">
         <!-- Security token by Django -->
             {% csrf_token %}
             Är du säker att du vill ta bort trafikregel ?
-            <input type="button" class="btn btn-danger"  type="submit" value="Yes" />
+            <input type="button" class="btn btn-danger"  type="submit" value="Ja" />
             {% if PAGENUMBER is None %}
-                <a class="btn btn-primary" type="button" href="/trafic_rules">Cancel </a>
+                <a class="btn btn-primary" type="button" href="/trafic_rules">Avbryt </a>
             {% else %}
-                <a class="btn btn-primary" type="button" href="/trafic_rules?page={{PAGENUMBER}}">Cancel </a>
+                <a class="btn btn-primary" type="button" href="/trafic_rules?page={{PAGENUMBER}}">Avbryt</a>
             {% endif %}
         </form>
     </div>
