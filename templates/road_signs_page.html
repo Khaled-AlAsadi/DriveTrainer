@@ -14,9 +14,13 @@
 
     {% for road_sign in page %}
       <div class="container">
-        <h2>{{ road_sign.title }}</h2>
-        <img id="road_signs_pictures" class="img-fluid" src="{{ road_sign.image_link }}" />
-        <p>{{  road_sign.description  }}</p>
+        <div class="card" style="width: 33rem;">
+          <img class="card-img-top" src="{{ road_sign.image_link }}" alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title">{{ road_sign.title }}</h5>
+            <p class="card-text">{{  road_sign.description  }}</p>
+          </div>
+        </div>
         {% if request.user.is_staff %}
           <a class="btn btn-primary" type="button" href="{% url 'update_roadSign_view' id=road_sign.id %}">Uppdatera</a>
           <a type="button" class="btn btn-danger" href="{% url 'roadsign_delete' id=road_sign.id %}">Ta bort</a>
