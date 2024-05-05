@@ -32,7 +32,7 @@ def trafic_rules(request):
     global PAGENUMBER
     if not isinstance(request.user, AnonymousUser):
         rules = TraficRule.objects.all()
-        paginated = Paginator(rules, 1)
+        paginated = Paginator(rules, 5)
         page_number = request.GET.get('page')
 
         page = paginated.get_page(page_number)
@@ -138,7 +138,7 @@ def road_signs_page(request):
     global PAGENUMBER
     if not isinstance(request.user, AnonymousUser):
         road_signs = RoadSign.objects.all()
-        paginated = Paginator(road_signs, 1)
+        paginated = Paginator(road_signs, 5)
         page_number = request.GET.get('page')
         PAGENUMBER = page_number
         page = paginated.get_page(page_number)
