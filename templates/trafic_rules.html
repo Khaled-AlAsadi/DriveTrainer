@@ -5,13 +5,13 @@
 {% block content %}
   {% if user.is_authenticated %}
     {% if request.user.is_staff %}
-      <div class="container">
+      <div class="container mb-3">
         <a class="btn btn-primary" type="button" href="{% url 'trafic_rule/create' %}">Lägg till</a>
       </div>
     {% endif %}
     {% for rule in page %}
 
-      <div class="container">
+      <div class="container mb-3">
         <div class="card" style="width: 33rem;">
           <img class="card-img-top" src="{{ rule.image_link }}" alt="Card image cap">
           <div class="card-body">
@@ -20,9 +20,9 @@
           </div>
         </div>
         {% if request.user.is_staff %}
-          <a class="btn btn-primary" type="button" href="{% url 'update_traficRule_view' id=rule.id %}">Uppdatera</a>
+          <a class="btn btn-primary mt-3" type="button" href="{% url 'update_traficRule_view' id=rule.id %}">Uppdatera</a>
 
-          <a type="button" class="btn btn-danger" href="{% url 'traficrule_delete' id=rule.id %}">Ta bort</a>
+          <a type="button" class="btn btn-danger mt-3" href="{% url 'traficrule_delete' id=rule.id %}">Ta bort</a>
         {% endif %}
 
       </div>
