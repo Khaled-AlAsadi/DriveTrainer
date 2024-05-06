@@ -17,36 +17,40 @@
           <div class="card-body">
             <h5 class="card-title">{{ rule.title }}</h5>
             <p class="card-text">{{ rule.sub_text }}</p>
-          </div>
-        </div>
-        {% if request.user.is_staff %}
-          <a class="btn btn-primary mt-3" type="button" href="{% url 'update_traficRule_view' id=rule.id %}">Uppdatera</a>
+            {% if request.user.is_staff %}
+              <a class="btn btn-primary mt-3" type="button" href="{% url 'update_traficRule_view' id=rule.id %}">Uppdatera</a>
 
-          <a type="button" class="btn btn-danger mt-3" href="{% url 'traficrule_delete' id=rule.id %}">Ta bort</a>
-        {% endif %}
+              <a type="button" class="btn btn-danger mt-3" href="{% url 'traficrule_delete' id=rule.id %}">Ta bort</a>
+            {% endif %}
+          </div>
+
+        </div>
+
 
       </div>
     {% endfor %}
   {% endif %}
 
   <!-- Pagination Links -->
-  {% if page.has_previous %}
-    <a href="?page={{ page.previous_page_number }}" class="btn btn-secondary mx-2">Previous</a>
-  {% endif %}
-
-  <a href="?page=1" class="btn btn-secondary">First</a>
-
-  {% for num in page.paginator.page_range %}
-    {% if num == page.number %}
-      <span>{{ num }}</span>
-    {% else %}
-      <a href="?page={{ num }}" class="btn btn-secondary mx-2">{{ num }}</a>
+  <div class="container">
+    {% if page.has_previous %}
+      <a href="?page={{ page.previous_page_number }}" class="btn btn-secondary mx-2">Previous</a>
     {% endif %}
-  {% endfor %}
 
-  <a href="?page={{ page.paginator.num_pages }}" class="btn btn-secondary mx-2">Last</a>
+    <a href="?page=1" class="btn btn-secondary">First</a>
 
-  {% if page.has_next %}
-    <a href="?page={{ page.next_page_number }}" class="btn btn-secondary mx-2">Next</a>
-  {% endif %}
+    {% for num in page.paginator.page_range %}
+      {% if num == page.number %}
+        <span>{{ num }}</span>
+      {% else %}
+        <a href="?page={{ num }}" class="btn btn-secondary mx-2">{{ num }}</a>
+      {% endif %}
+    {% endfor %}
+
+    <a href="?page={{ page.paginator.num_pages }}" class="btn btn-secondary mx-2">Last</a>
+
+    {% if page.has_next %}
+      <a href="?page={{ page.next_page_number }}" class="btn btn-secondary mx-2">Next</a>
+    {% endif %}
+  </div>
 {% endblock %}
