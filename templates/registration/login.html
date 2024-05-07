@@ -3,12 +3,14 @@
 {% block title %}DriveTrainer - Logga in sida{% endblock %}
 
 {% block content %}
-  <h2>Log In</h2>
-  {% csrf_token %}
+  <h2>Logga in</h2>
   <form method="post">
     {% csrf_token %}
-    {{ form }}
+    <label for="id_username">Username:</label>
+    <input type="text" name="username" id="id_username" placeholder="Username" class="form-control" style="width: 300px;"><br>
+    <label for="id_password">Password:</label>
+    <input type="password" name="password" id="id_password" placeholder="Password" class="form-control" style="width: 300px;"><br>
     <p>Har du inget konto? <a href="{% url 'signup' %}">Skapa ditt konto här</a><p>
-      <button type="submit">Log In</button>
-    </form>
+      <input class="btn btn-success" type="submit" value="Logga in">
+  </form>
 {% endblock %}
