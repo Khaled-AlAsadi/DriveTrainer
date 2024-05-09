@@ -35,9 +35,9 @@
   <div class="container">
     {% if page.has_previous %}
       <a href="?page={{ page.previous_page_number }}" class="btn btn-secondary mx-2">Previous</a>
-    {% endif %}
 
-    <a href="?page=1" class="btn btn-secondary">First</a>
+      <a href="?page=1" class="btn btn-secondary">First</a>
+    {% endif %}
 
     {% for num in page.paginator.page_range %}
       {% if num == page.number %}
@@ -47,9 +47,10 @@
       {% endif %}
     {% endfor %}
 
-    <a href="?page={{ page.paginator.num_pages }}" class="btn btn-secondary mx-2">Last</a>
 
     {% if page.has_next %}
+      <a href="?page={{ page.paginator.num_pages }}" class="btn btn-secondary mx-2">Last</a>
+
       <a href="?page={{ page.next_page_number }}" class="btn btn-secondary mx-2">Next</a>
     {% endif %}
   </div>
