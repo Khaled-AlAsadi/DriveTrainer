@@ -42,45 +42,61 @@ def trafic_rules(request):
         return HttpResponseRedirect('login')
 
 def start_quiz(request):
-    first_question = TraficRuleQuestion.objects.first()
-    return redirect('trafic_rule_question_detail', question_id=first_question.id)
+    if not isinstance(request.user, AnonymousUser):
+
+        first_question = TraficRuleQuestion.objects.first()
+        return redirect('trafic_rule_question_detail', question_id=first_question.id)
+    else:
+        return redirect('login')
 
 
 def continue_quiz(request):
-    # Get all answered question IDs
-    # Flat retrives a single field
-    answered_question_ids = TraficRuleAnswer.objects.values_list(
-        'question_id', flat=True)
+    if not isinstance(request.user, AnonymousUser):
 
-    # Get the first question that hasn't been answered
-    first_unanswered_question = TraficRuleQuestion.objects.exclude(
-        id__in=answered_question_ids).first()
+        # Get all answered question IDs
+        # Flat retrives a single field
+        answered_question_ids = TraficRuleAnswer.objects.values_list(
+            'question_id', flat=True)
 
-    return redirect('trafic_rule_question_detail', question_id=first_unanswered_question.id)
+        # Get the first question that hasn't been answered
+        first_unanswered_question = TraficRuleQuestion.objects.exclude(
+            id__in=answered_question_ids).first()
+
+        return redirect('trafic_rule_question_detail', question_id=first_unanswered_question.id)
+    else:
+        return redirect('login')
 
 
 def next_question(request, current_question_id):
-    try:
-        # id__gt = greater than
-        next_question = TraficRuleQuestion.objects.filter(
-            id__gt=current_question_id).order_by('id').first()
-        if next_question:
-            return redirect('trafic_rule_question_detail', question_id=next_question.id)
-    except TraficRuleQuestion.DoesNotExist:
-        return redirect('question_not_found')
+    if not isinstance(request.user, AnonymousUser):
+
+        try:
+            # id__gt = greater than
+            next_question = TraficRuleQuestion.objects.filter(
+                id__gt=current_question_id).order_by('id').first()
+            if next_question:
+                return redirect('trafic_rule_question_detail', question_id=next_question.id)
+        except TraficRuleQuestion.DoesNotExist:
+            return redirect('question_not_found')
+    else:
+        return redirect('login')
 
 
 def previous_question(request, current_question_id):
-    try:
-        # id__lt = less than
-        previous_question = TraficRuleQuestion.objects.filter(
-            id__lt=current_question_id).order_by('-id').first()
-        if previous_question:
-            return redirect('trafic_rule_question_detail', question_id=previous_question.id)
-        else:
+    if not isinstance(request.user, AnonymousUser):
+
+        try:
+            # id__lt = less than
+            previous_question = TraficRuleQuestion.objects.filter(
+                id__lt=current_question_id).order_by('-id').first()
+            if previous_question:
+                return redirect('trafic_rule_question_detail', question_id=previous_question.id)
+            else:
+                raise Http404("Previous question does not exist")
+        except TraficRuleQuestion.DoesNotExist:
             raise Http404("Previous question does not exist")
-    except TraficRuleQuestion.DoesNotExist:
-        raise Http404("Previous question does not exist")
+    else:
+        return redirect('login')
 
 
 def trafic_rule_question_detail(request, question_id):
@@ -148,108 +164,134 @@ def road_signs_page(request):
 
 # create view for RoadSign
 def create_roadSign_view(request):
-    # dictionary for initial data with 
-    # field names as keys
-    context ={}
- 
-    # add the dictionary during initialization
-    form = RoadSignForm(request.POST or None)
-    if form.is_valid():
-        form.save()
-        return redirect('road_signs')
+    if not isinstance(request.user, AnonymousUser):
 
-    context['form']= form
-    context["PAGENUMBER"] = PAGENUMBER
+        # dictionary for initial data with 
+        # field names as keys
+        context ={}
+    
+        # add the dictionary during initialization
+        form = RoadSignForm(request.POST or None)
+        if form.is_valid():
+            form.save()
+            return redirect('road_signs')
 
-    return render(request, "create_roadSign_view.html", context)
+        context['form']= form
+        context["PAGENUMBER"] = PAGENUMBER
+
+        return render(request, "create_roadSign_view.html", context)
+    else:
+        return HttpResponseRedirect('login')
+
 
 # delete view for RoadSign
 def delete_roadSign_view(request, id):
-    # dictionary for initial data with 
-    # field names as keys
-    context ={}
- 
-    # fetch the object related to passed id
-    obj = get_object_or_404(RoadSign, id = id)
- 
- 
-    if request.method =="POST":
-        # delete object
-        obj.delete()
-        # after deleting redirect to 
-        # home page
-        return redirect('road_signs')
-    context["PAGENUMBER"] = PAGENUMBER
-    return render(request, "delete_roadsign_view.html", context)
+    if not isinstance(request.user, AnonymousUser):
+
+        # dictionary for initial data with 
+        # field names as keys
+        context ={}
+    
+        # fetch the object related to passed id
+        obj = get_object_or_404(RoadSign, id = id)
+    
+    
+        if request.method =="POST":
+            # delete object
+            obj.delete()
+            # after deleting redirect to 
+            # home page
+            return redirect('road_signs')
+        context["PAGENUMBER"] = PAGENUMBER
+        return render(request, "delete_roadsign_view.html", context)
+    else:
+        return redirect('login')
 
 # update view for RoadSign
 def update_roadSign_view(request, id):
-    context = {}
+    if not isinstance(request.user, AnonymousUser):
 
-    # Fetch the object related to the passed id
-    obj = get_object_or_404(RoadSign, id=id)
+        context = {}
 
-    # Pass the object as an instance in the form
-    form = RoadSignForm(request.POST or None, instance=obj)
-    # Save the data from the form and redirect to detail_view
-    if form.is_valid():
-        form.save()
-        return redirect('road_signs')
+        # Fetch the object related to the passed id
+        obj = get_object_or_404(RoadSign, id=id)
 
-    # Add form dictionary to context
-    context["form"] = form
-    context["PAGENUMBER"] = PAGENUMBER
+        # Pass the object as an instance in the form
+        form = RoadSignForm(request.POST or None, instance=obj)
+        # Save the data from the form and redirect to detail_view
+        if form.is_valid():
+            form.save()
+            return redirect('road_signs')
 
-    return render(request, "update_roadsign_view.html", context)
+        # Add form dictionary to context
+        context["form"] = form
+        context["PAGENUMBER"] = PAGENUMBER
+
+        return render(request, "update_roadsign_view.html", context)
+    else:
+        return redirect('login')
 
 
 # create view for TraficRule
 def create_traficrule_view(request):
-    # dictionary for initial data with 
-    # field names as keys
-    context ={}
- 
-    # add the dictionary during initialization
-    form = TraficRuleForm(request.POST or None)
-    if form.is_valid():
-        form.save()
-        return redirect('trafic_rules')
+    if not isinstance(request.user, AnonymousUser):
 
-    context['form']= form
-    context["PAGENUMBER"] = PAGENUMBER
-    return render(request, "create_traficrule_view.html", context)
+        # dictionary for initial data with 
+        # field names as keys
+        context ={}
+    
+        # add the dictionary during initialization
+        form = TraficRuleForm(request.POST or None)
+        if form.is_valid():
+            form.save()
+            return redirect('trafic_rules')
+
+        context['form']= form
+        context["PAGENUMBER"] = PAGENUMBER
+        return render(request, "create_traficrule_view.html", context)
+    else:
+        return redirect('login')
 
 
 # delete view for TraficRule
 def delete_traficrule_view(request, id):
-    context = {}
+    if not isinstance(request.user, AnonymousUser):
 
-    # Fetch the TraficRule object related to the passed id
-    obj = get_object_or_404(TraficRule, id=id)
-    
-    if request.method == "POST":
-        # Delete the object
-        obj.delete()
-        # After deleting, redirect to the home page
-        return redirect('trafic_rules')
-    context["PAGENUMBER"] = PAGENUMBER
-    return render(request, "delete_traficrule_view.html", context)
+        context = {}
+
+        # Fetch the TraficRule object related to the passed id
+        obj = get_object_or_404(TraficRule, id=id)
+        
+        if request.method == "POST":
+            # Delete the object
+            obj.delete()
+            # After deleting, redirect to the home page
+            return redirect('trafic_rules')
+        context["PAGENUMBER"] = PAGENUMBER
+        return render(request, "delete_traficrule_view.html", context)
+    else:
+        return redirect('login')
+
 
 # update view for RoadSign
 def update_traficRule_view(request, id):
-    context = {}
+    if not isinstance(request.user, AnonymousUser):
 
-    # Fetch the object related to the passed id
-    obj = get_object_or_404(TraficRule, id=id)
+        context = {}
 
-    # Pass the object as an instance in the form
-    form = TraficRuleForm(request.POST or None, instance=obj)
-    # Save the data from the form and redirect to detail_view
-    if form.is_valid():
-        form.save()
-        return redirect('trafic_rules')
+        # Fetch the object related to the passed id
+        obj = get_object_or_404(TraficRule, id=id)
 
-    # Add form dictionary to context
-    context["form"] = form
-    context["PAGENUMBER"] = PAGENUMBER
-    return render(request, "update_traficrule_view.html", context)
+        # Pass the object as an instance in the form
+        form = TraficRuleForm(request.POST or None, instance=obj)
+        # Save the data from the form and redirect to detail_view
+        if form.is_valid():
+            form.save()
+            return redirect('trafic_rules')
+
+        # Add form dictionary to context
+        context["form"] = form
+        context["PAGENUMBER"] = PAGENUMBER
+        return render(request, "update_traficrule_view.html", context)
+    else:
+        return redirect('login')
