@@ -17,7 +17,7 @@
                 {{ choice.choice_text }}<br>
             {% endfor %}
             {% if not is_answered_correctly %}
-                <button type="submit" value="Submit">Submit</button>
+                <button class="btn btn-success mt-3" type="submit" value="Submit">Submit</button>
             {% endif %}
             {% if message %}
                 <p>{{ message }}</p>
@@ -26,7 +26,7 @@
         <div class="button-container">
             {% if not is_first_question %}
                 <a href="{% url 'previous_question' current_question_id=current_question_id %}" class="nextButton">
-                    Previous
+                    Föregående fråga
                 </a>
             {% endif %}
             {% if not is_last_question %}
