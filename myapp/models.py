@@ -32,7 +32,7 @@ class TraficRuleAnswer(models.Model):
 class TraficRule(models.Model):
     title = models.CharField(max_length=400,validators=[MinLengthValidator(5), MaxLengthValidator(400)])
     sub_title =models.CharField(max_length=400,validators=[MinLengthValidator(5), MaxLengthValidator(400)])
-    sub_text = models.TextField(max_length=1000,validators=[MinLengthValidator(5), MaxLengthValidator(1000)])
+    sub_text = models.TextField(max_length=500,validators=[MinLengthValidator(5), MaxLengthValidator(500)])
     image_link = models.CharField(max_length=500,validators=[MinLengthValidator(5), MaxLengthValidator(500)])
     def __str__(self):
         return self.title
