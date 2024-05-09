@@ -4,7 +4,10 @@ from .models import RoadSign, TraficRule
  
 # creating a form
 class RoadSignForm(forms.ModelForm):
- 
+    title = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Title', 'style': 'width: 300px;', 'class': 'form-control'}))
+    description = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Subtitle', 'style': 'width: 300px;', 'class': 'form-control'}))
+    image_link = forms.URLField(widget=forms.URLInput(attrs={'placeholder': 'Image Link', 'style': 'width: 300px;', 'class': 'form-control'}))
+
     # create meta class
     class Meta:
         # specify model to be used

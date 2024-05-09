@@ -11,11 +11,11 @@
         <!-- form as paragraph -->
             {{ form.as_p }}
 
-            <input type="submit" value="Update">
+            <input class="btn btn-success mt-3" type="submit" value="Uppdatera">
             {% if PAGENUMBER is None %}
-                <a href="/road_signs">Cancel </a>
+                <a class="btn btn-danger mt-3" href="/road_signs">Avbryt</a>
             {% else %}
-                <a href="/road_signs?page={{PAGENUMBER}}">Cancel </a>
+                <a class="btn btn-danger mt-3" href="/road_signs?page={{PAGENUMBER}}">Avbryt</a>
             {% endif %}
         </form>
 
