@@ -20,11 +20,11 @@
             </div>
             <div>
                 {% if progress_percentage == 0 %}
-                    <button class="btn btn-success" onclick="window.location.href='{% url 'start_quiz' %}'">
+                    <button class="btn btn-primary mt-3" onclick="window.location.href='{% url 'start_quiz' %}'">
                         Starta Quiz
                     </button>
                 {% elif progress_percentage != 100 and progress_percentage > 0 %}
-                    <button class="btn btn-success" onclick="window.location.href='{% url 'continue_quiz' %}'">
+                    <button class="btn btn-primary mt-3" onclick="window.location.href='{% url 'continue_quiz' %}'">
                         Fortsätt Quiz
                     </button>
                 {% endif %}
