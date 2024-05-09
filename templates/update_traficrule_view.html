@@ -8,14 +8,13 @@
         <!-- Security token by Django -->
             {% csrf_token %}
 
-        <!-- form as paragraph -->
             {{ form.as_p }}
+            <input class="btn btn-success mt-3" type="submit" value="Uppdatera">
 
-            <input type="submit" value="Update">
             {% if PAGENUMBER is None %}
-                <a href="/trafic_rules">Cancel </a>
+                <a class="btn btn-primary mt-3" href="/trafic_rules">Avbryt</a>
             {% else %}
-                <a href="/trafic_rules?page={{PAGENUMBER}}">Cancel </a>
+                <a class="btn btn-primary mt-3" href="/trafic_rules?page={{PAGENUMBER}}">Avbryt</a>
             {% endif %}
         </form>
 
