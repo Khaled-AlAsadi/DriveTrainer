@@ -1,14 +1,16 @@
-from django.http import Http404,HttpResponseRedirect
+from django.http import Http404, HttpResponseRedirect
 from django.shortcuts import redirect, render
 
 from myapp.forms import RoadSignForm, TraficRuleForm
-from .models import TraficRule, TraficRuleAnswer, TraficRuleChoice, TraficRuleQuestion, RoadSign
+from .models import TraficRule, TraficRuleAnswer
+from .models import TraficRuleChoice, TraficRuleQuestion, RoadSign
 from django.contrib.auth.models import AnonymousUser
 from django.shortcuts import get_object_or_404
 from django.core.paginator import Paginator
 
 # Create your views here.
 PAGENUMBER = 1
+
 
 def index(request):
     if not isinstance(request.user, AnonymousUser):
@@ -23,7 +25,9 @@ def index(request):
         else:
             progress_percentage = 0
 
-        return render(request, 'home.html', {"questions": questions, "progress_percentage": int(progress_percentage)})
+        return render(request, 'home.html',
+                      {"questions": questions,
+                       "progress_percentage": int(progress_percentage)})
     else:
         return HttpResponseRedirect('login')
 
@@ -41,11 +45,13 @@ def trafic_rules(request):
     else:
         return HttpResponseRedirect('login')
 
+
 def start_quiz(request):
     if not isinstance(request.user, AnonymousUser):
 
         first_question = TraficRuleQuestion.objects.first()
-        return redirect('trafic_rule_question_detail', question_id=first_question.id)
+        return redirect('trafic_rule_question_detail',
+                        question_id=first_question.id)
     else:
         return redirect('login')
 
@@ -62,7 +68,8 @@ def continue_quiz(request):
         first_unanswered_question = TraficRuleQuestion.objects.exclude(
             id__in=answered_question_ids).first()
 
-        return redirect('trafic_rule_question_detail', question_id=first_unanswered_question.id)
+        return redirect('trafic_rule_question_detail',
+                        question_id=first_unanswered_question.id)
     else:
         return redirect('login')
 
@@ -75,7 +82,8 @@ def next_question(request, current_question_id):
             next_question = TraficRuleQuestion.objects.filter(
                 id__gt=current_question_id).order_by('id').first()
             if next_question:
-                return redirect('trafic_rule_question_detail', question_id=next_question.id)
+                return redirect('trafic_rule_question_detail',
+                                question_id=next_question.id)
         except TraficRuleQuestion.DoesNotExist:
             return redirect('question_not_found')
     else:
@@ -90,7 +98,8 @@ def previous_question(request, current_question_id):
             previous_question = TraficRuleQuestion.objects.filter(
                 id__lt=current_question_id).order_by('-id').first()
             if previous_question:
-                return redirect('trafic_rule_question_detail', question_id=previous_question.id)
+                return redirect('trafic_rule_question_detail',
+                                question_id=previous_question.id)
             else:
                 raise Http404("Previous question does not exist")
         except TraficRuleQuestion.DoesNotExist:
@@ -125,7 +134,8 @@ def trafic_rule_question_detail(request, question_id):
                         existing_answer.save()
                     else:
                         answer = TraficRuleAnswer.objects.create(
-                            question=question, user=request.user, is_answered=True)
+                            question=question, user=request.user,
+                            is_answered=True)
                         answer.selected_choices.add(submitted_choice)
                     existing_answer = TraficRuleAnswer.objects.filter(
                         question=question, user=request.user).first()
@@ -145,7 +155,16 @@ def trafic_rule_question_detail(request, question_id):
                     if choice in existing_answer.selected_choices.all():
                         choice.is_selected = True
                         is_answered_correctly = True
-        return render(request, 'question_detail.html', {'question': question, 'choices': choices, 'message': message, 'is_answered_correctly': is_answered_correctly, 'current_question_id': question_id, "last_question_id": last_question_id, "is_last_question": is_last_question, "is_first_question": is_first_question})
+        return render(request,
+                      'question_detail.html',
+                      {'question': question,
+                       'choices': choices,
+                          'message': message,
+                          'is_answered_correctly': is_answered_correctly,
+                          'current_question_id': question_id,
+                          "last_question_id": last_question_id,
+                          "is_last_question": is_last_question,
+                          "is_first_question": is_first_question})
     else:
         return HttpResponseRedirect('login')
 
@@ -163,20 +182,22 @@ def road_signs_page(request):
         return HttpResponseRedirect('login')
 
 # create view for RoadSign
+
+
 def create_roadSign_view(request):
     if not isinstance(request.user, AnonymousUser):
 
-        # dictionary for initial data with 
+        # dictionary for initial data with
         # field names as keys
-        context ={}
-    
+        context = {}
+
         # add the dictionary during initialization
         form = RoadSignForm(request.POST or None)
         if form.is_valid():
             form.save()
             return redirect('road_signs')
 
-        context['form']= form
+        context['form'] = form
         context["PAGENUMBER"] = PAGENUMBER
 
         return render(request, "create_roadSign_view.html", context)
@@ -188,18 +209,17 @@ def create_roadSign_view(request):
 def delete_roadSign_view(request, id):
     if not isinstance(request.user, AnonymousUser):
 
-        # dictionary for initial data with 
+        # dictionary for initial data with
         # field names as keys
-        context ={}
-    
+        context = {}
+
         # fetch the object related to passed id
-        obj = get_object_or_404(RoadSign, id = id)
-    
-    
-        if request.method =="POST":
+        obj = get_object_or_404(RoadSign, id=id)
+
+        if request.method == "POST":
             # delete object
             obj.delete()
-            # after deleting redirect to 
+            # after deleting redirect to
             # home page
             return redirect('road_signs')
         context["PAGENUMBER"] = PAGENUMBER
@@ -208,6 +228,8 @@ def delete_roadSign_view(request, id):
         return redirect('login')
 
 # update view for RoadSign
+
+
 def update_roadSign_view(request, id):
     if not isinstance(request.user, AnonymousUser):
 
@@ -236,17 +258,17 @@ def update_roadSign_view(request, id):
 def create_traficrule_view(request):
     if not isinstance(request.user, AnonymousUser):
 
-        # dictionary for initial data with 
+        # dictionary for initial data with
         # field names as keys
-        context ={}
-    
+        context = {}
+
         # add the dictionary during initialization
         form = TraficRuleForm(request.POST or None)
         if form.is_valid():
             form.save()
             return redirect('trafic_rules')
 
-        context['form']= form
+        context['form'] = form
         context["PAGENUMBER"] = PAGENUMBER
         return render(request, "create_traficrule_view.html", context)
     else:
@@ -261,7 +283,7 @@ def delete_traficrule_view(request, id):
 
         # Fetch the TraficRule object related to the passed id
         obj = get_object_or_404(TraficRule, id=id)
-        
+
         if request.method == "POST":
             # Delete the object
             obj.delete()
