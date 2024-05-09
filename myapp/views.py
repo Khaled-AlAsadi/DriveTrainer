@@ -74,7 +74,7 @@ def previous_question(request, current_question_id):
     try:
         # id__lt = less than
         previous_question = TraficRuleQuestion.objects.filter(
-            id__lt=current_question_id).order_by('id').first()
+            id__lt=current_question_id).order_by('-id').first()
         if previous_question:
             return redirect('trafic_rule_question_detail', question_id=previous_question.id)
         else:
