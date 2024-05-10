@@ -24,7 +24,7 @@
                 <p>{{ message }}</p>
             {% endif %}
         </form>
-        <div class="button-container">
+        <div class="button-container" style="display: flex; justify-content: center; gap: 3rem; margin-top: 20px;">
             {% if not is_first_question %}
                 <a class="btn btn-primary mt-3" href="{% url 'previous_question' current_question_id=current_question_id %}" class="nextButton">
                     Föregående fråga

@@ -1,6 +1,6 @@
 # DriveReady
 
-**Deployed website: [Link to website](https://wowder.onrender.com)**
+**Deployed website: [Link to website](https://driveready.onrender.com/)**
 
 
 ![Main image](documentation/readme_header.png)

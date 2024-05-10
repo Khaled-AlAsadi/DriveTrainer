@@ -4,7 +4,7 @@
 
 {% block content %}
   <h2>Sign up</h2>
-  <form method="post" id="signUpForm">
+  <form method="post">
     {% csrf_token %}
     <div class="form-group">
       {{ form }}
