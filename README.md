@@ -87,6 +87,11 @@ This website is intended for people interested in learning how to drive a car. s
 
 
 ## Flowcharts
+To understand some concepts, I created several flowchart diagrams.
+
+1. Ability to preform CRUD (Create, Read , Update , Delete) functionalty for staff/admin users
+
+[Flowchart](documentation/flowcharts/crud_functionality.pdf)
 
 
 ---
