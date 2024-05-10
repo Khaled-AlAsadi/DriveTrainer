@@ -7,7 +7,7 @@
 
 ## About
 
-"DriveReady" is a website that allows user to learn about various roadsigns and traficRules. It has a login system, a quiz for the user to train. The main functionality of Adding,Updating,Deleting is purposed only for "Administrators/staff". Every person with the administrator privilage can do the "CRUD" operations
+DriveReady is a website that allows user to learn about various roadsigns and traficRules. It has a login system, a quiz for the user to train. The main functionality of Adding,Updating,Deleting is purposed only for "Administrators/staff". Every person with the administrator privilage can do the "CRUD" operations
 ---
 
 ## UX
@@ -36,9 +36,8 @@ This website is intended for people interested in learning how to drive a car. s
 - ### Languages:
     
     + [Python 3.8.5](https://www.python.org/downloads/release/python-385/): the primary language used to develop the server-side of the website.
-    + [JS](https://www.javascript.com/): the primary language used to develop interactive components of the website.
     + [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML): the markup language used to create the website.
-    + [CSS](https://developer.mozilla.org/en-US/docs/Web/css): the styling language used to style the website.
+    + [BOOTSTRAP](https://getbootstrap.com/): the styling used to style the elements of the website.
 
 - ### Frameworks and libraries:
 
@@ -63,12 +62,13 @@ This website is intended for people interested in learning how to drive a car. s
     + [W3C Validator](https://validator.w3.org/): was used to validate HTML5 code for the website.
     + [W3C CSS validator](https://jigsaw.w3.org/css-validator/): was used to validate CSS code for the website.
     + [PEP8](https://pep8.org/): was used to validate Python code for the website.
-    + [Django-extensions](https://django-extensions.readthedocs.io/en/latest/) was used to create a Entity-Relationship Diagram.
+    + [Miro](https://miro.com/) was used to create a Entity-Relationship Diagram and flowcharts.
 
 ---
 
 ## Features
 
+Please refer to the [FEATURES.md](FEATURES.md) file for all test-related documentation.
 
 
 ---
