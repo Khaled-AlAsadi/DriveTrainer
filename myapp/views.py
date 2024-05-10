@@ -185,7 +185,7 @@ def road_signs_page(request):
 
 
 def create_roadSign_view(request):
-    if not isinstance(request.user, AnonymousUser):
+    if not isinstance(request.user, AnonymousUser) and request.user.is_staff:
 
         # dictionary for initial data with
         # field names as keys
@@ -207,7 +207,7 @@ def create_roadSign_view(request):
 
 # delete view for RoadSign
 def delete_roadSign_view(request, id):
-    if not isinstance(request.user, AnonymousUser):
+    if not isinstance(request.user, AnonymousUser) and request.user.is_staff:
 
         # dictionary for initial data with
         # field names as keys
@@ -231,7 +231,7 @@ def delete_roadSign_view(request, id):
 
 
 def update_roadSign_view(request, id):
-    if not isinstance(request.user, AnonymousUser):
+    if not isinstance(request.user, AnonymousUser) and request.user.is_staff:
 
         context = {}
 
@@ -256,7 +256,7 @@ def update_roadSign_view(request, id):
 
 # create view for TraficRule
 def create_traficrule_view(request):
-    if not isinstance(request.user, AnonymousUser):
+    if not isinstance(request.user, AnonymousUser) and request.user.is_staff:
 
         # dictionary for initial data with
         # field names as keys
@@ -277,7 +277,7 @@ def create_traficrule_view(request):
 
 # delete view for TraficRule
 def delete_traficrule_view(request, id):
-    if not isinstance(request.user, AnonymousUser):
+    if not isinstance(request.user, AnonymousUser) and request.user.is_staff:
 
         context = {}
 
@@ -297,7 +297,7 @@ def delete_traficrule_view(request, id):
 
 # update view for RoadSign
 def update_traficRule_view(request, id):
-    if not isinstance(request.user, AnonymousUser):
+    if not isinstance(request.user, AnonymousUser) and request.user.is_staff:
 
         context = {}
 
