@@ -33,7 +33,13 @@ class TestViews(TestCase):
         response = self.client.get('/road_signs', follow=True)
         self.assertRedirects(response, '/login/')
 
-    def test_login_functionality(self):
-        response = self.client.post('/login/', self.credentials, follow=True)
+    def test_road_signs_view_load(self):
+        # Log in
+        response_login = self.client.post(
+            '/login/', self.credentials, follow=True)
 
-        self.assertTrue(response.context['user'].is_active)
+        self.assertTrue(response_login.context['user'].is_active)
+
+        response_road_signs = self.client.get('/road_signs', follow=True)
+
+        self.assertEqual(response_road_signs.status_code, 200)
