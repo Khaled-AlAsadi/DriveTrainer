@@ -30,7 +30,7 @@ Usability was tested with the below user acceptance testing, sent to new users t
 | Navigation  |                        |                  |      |             |
 | 1           | Click on the logo | Redirection to home page | Y |          |
 | 2           | Click TrafikRegler (trafic_rules) in the navbar | Redirection to trafic_rules page | Y |          |
-| 3           | Click Väggmärken (roadi_signs) | Redirection to roadi_signs page | Y |          |
+| 3           | Click Vägmärken (roadi_signs) | Redirection to roadi_signs page | Y |          |
 | 4           | Click Start Quiz/Continue Quiz | Redirection to question-detail page | Y |          |
 | 5           | Click Github button | Redirection to new tab with github link | Y |          |
 | 6           | Click LinkedIn button | Redirection to new tab with linkedIn link | Y |          |

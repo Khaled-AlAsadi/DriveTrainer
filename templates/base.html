@@ -27,7 +27,7 @@
               <a class="nav-link" href="/trafic_rules">TrafikRegler</a>
             </li>
             <li class="nav-item {% if request.path == '/road_signs' %}active{% endif %}">
-              <a class="nav-link" href="/road_signs">Väggmärken</a>
+              <a class="nav-link" href="/road_signs">Vägmärken</a>
             </li>
             <form method="post" action="{% url 'logout' %}">
               {% csrf_token %}
