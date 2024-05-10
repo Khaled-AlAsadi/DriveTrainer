@@ -91,7 +91,7 @@ To understand some concepts, I created several flowchart diagrams.
 
 1. Ability to preform CRUD (Create, Read , Update , Delete) functionalty for staff/admin users
 
-[Flowchart](documentation/flowcharts/crud_functionality.png)
+![Flowchart](documentation/flowcharts/crud_functionality.png)
 
 
 ---
