@@ -14,7 +14,7 @@
 
     {% for road_sign in page %}
       <div class="container mb-3">
-        <div class="card" style="width: 33rem;">
+        <div class="card" style="max-width: 33rem;">
           <img class="card-img-top" src="{{ road_sign.image_link }}" alt="bild för {{ road_sign.title}}">
           <div class="card-body">
             <h5 class="card-title">{{ road_sign.title }}</h5>
