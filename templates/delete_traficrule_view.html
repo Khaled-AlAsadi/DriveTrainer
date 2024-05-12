@@ -2,18 +2,14 @@
 
 {% block title %}DriveTrainer - Ta bort trafikregel {% endblock %}
 {% block content %}
-    <div class="main">
-    <!-- Create a Form -->
-        <form class="delete-traficrule-form " method="POST">
-        <!-- Security token by Django -->
-            {% csrf_token %}
-            Är du säker att du vill ta bort trafikregel ?
-            <input type="button" class="btn btn-danger"  type="submit" value="Ja" />
-            {% if PAGENUMBER is None %}
-                <a class="btn btn-primary" type="button" href="/trafic_rules" aria-label="Avbryt">Avbryt </a>
-            {% else %}
-                <a class="btn btn-primary" type="button" href="/trafic_rules?page={{PAGENUMBER}}" aria-label="Avbryt">Avbryt</a>
-            {% endif %}
-        </form>
-    </div>
+<form class="delete-traficrule-form " method="POST">
+    {% csrf_token %}
+    Är du säker att du vill ta bort trafikregel ?
+    <input type="submit" class="btn btn-danger"  type="submit" value="Ja" />
+    {% if PAGENUMBER is None %}
+        <a class="btn btn-primary" type="button" href="/trafic_rules" aria-label="Avbryt">Avbryt </a>
+    {% else %}
+        <a class="btn btn-primary" type="button" href="/trafic_rules?page={{PAGENUMBER}}" aria-label="Avbryt">Avbryt</a>
+    {% endif %}
+</form>
 {% endblock %}
