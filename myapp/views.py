@@ -185,7 +185,7 @@ def road_signs_page(request):
 
 
 def create_roadSign_view(request):
-    if not isinstance(request.user, AnonymousUser) and request.user.is_staff:
+    if not isinstance(request.user, AnonymousUser):
 
         # dictionary for initial data with
         # field names as keys
