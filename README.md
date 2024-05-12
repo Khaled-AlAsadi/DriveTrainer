@@ -8,6 +8,7 @@
 ## About
 
 DriveReady is a website that allows user to learn about various roadsigns and traficRules. It has a login system, a quiz for the user to train. The main functionality of Adding,Updating,Deleting is purposed only for "Administrators/staff". Every person with the administrator privilage can do the "CRUD" operations
+
 ---
 
 ## UX
@@ -22,11 +23,6 @@ This website is intended for people interested in learning how to drive a car. s
 ---
 
 ## Future Development
-
-#### Trafic Sign Quiz
-
-
-### Add more content
 
 
 ---
