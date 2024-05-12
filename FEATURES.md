@@ -3,27 +3,27 @@
 ## Access to pages according to the user role:
 
 | Page Name | Logged out  | User | Admin |
-| --------- | ----------- | ----------| ------- | ----- |
+| --------- | ----------- |------- | ----- |
 | Home      | Yes         | No        | No     
-| Create Road Sign  | Yes         | No        | No 
-| Update Road Sign  | Yes         | No        | No      
-| Delete Road Sign  | Yes         | No        | No 
-| Create Trafic Rule | Yes         | No        | No        
-| Update Trafic Rule | Yes         | No        | No 
-| Delete Trafic Rule | Yes         | No        | No 
-| Quiz Page | Yes         | No        | No 
-| Trafic Rules Page | Yes         | No        | No 
-| Road Signs Page | Yes         | No        | No 
-| Home      | No         | Yes        | Yes     
-| Create Road Sign  | No         | No        | Yes 
-| Update Road Sign  | No         | No        | Yes      
-| Delete Road Sign  | No         | No        | Yes 
-| Create Trafic Rule | No        | No        | Yes
+| Create Road Sign   | Yes        | No        | No 
+| Update Road Sign   | Yes        | No        | No      
+| Delete Road Sign   | Yes        | No        | No 
+| Create Trafic Rule | Yes        | No        | No        
+| Update Trafic Rule | Yes        | No        | No 
+| Delete Trafic Rule | Yes        | No        | No 
+| Quiz Page          | Yes        | No        | No 
+| Trafic Rules Page  | Yes        | No        | No 
+| Road Signs Page    | Yes        | No        | No 
+| Home               | No         | Yes       | Yes     
+| Create Road Sign   | No         | No        | Yes 
+| Update Road Sign   | No         | No        | Yes      
+| Delete Road Sign   | No         | No        | Yes 
+| Create Trafic Rule | No         | No        | Yes
 | Update Trafic Rule | No         | No        | Yes 
 | Delete Trafic Rule | No         | No        | Yes 
-| Quiz Page | No         | Yes        | Yes 
-| Trafic Rules Page | No         | Yes        | Yes 
-| Road Signs Page | No         | Yes        | Yes 
+| Quiz Page          | No         | Yes       | Yes 
+| Trafic Rules Page  | No         | Yes       | Yes 
+| Road Signs Page    | No         | Yes      | Yes 
 
 
 ## Main Features:
