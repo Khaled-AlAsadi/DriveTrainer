@@ -4,7 +4,7 @@
 {% block content %}
     <form class="delete-roadsign-form" method="POST">
         {% csrf_token %}
-        Är du säker att du vill ta bort väggemärket ?
+        Är du säker att du vill ta bort vägemärket ?
         <input type="submit" class="btn btn-danger" value="Ja" />
         {% if PAGENUMBER is None %}
             <a class="btn btn-primary" href="/road_signs" aria-label="Avbryt">Avbryt</a>
