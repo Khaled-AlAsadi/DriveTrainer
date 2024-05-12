@@ -185,7 +185,7 @@ def road_signs_page(request):
 
 
 def create_roadSign_view(request):
-    if not isinstance(request.user, AnonymousUser):
+    if not isinstance(request.user, AnonymousUser) and request.user.is_staff:
 
         # dictionary for initial data with
         # field names as keys
@@ -200,7 +200,7 @@ def create_roadSign_view(request):
         context['form'] = form
         context["PAGENUMBER"] = PAGENUMBER
 
-        return render(request, "create_roadSign_view.html", context)
+        return render(request, "create_roadsign_view.html", context)
     else:
         return HttpResponseRedirect('login')
 
