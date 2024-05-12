@@ -203,6 +203,6 @@ The delete road sign page has:
 
 - Delete Page:
 
-![Delete Trafic Rule](documentation/features/forms/delete_trafic_rule.png)
+![Delete Road Sign](documentation/features/forms/delete_road_sign.png)
 
 The page is only accessible to admin users. The page allows the users to delete an existing road sign.
