@@ -10,7 +10,7 @@
             Tillbaka
         </a>
         <h1>{{ question.question_text }}</h1>
-        <img src="{{question.link}}" class="img-fluid my-1" alt="bild för frågan: {{ question.question_text }}">
+        <img src="{{question.link}}" class="img-fluid my-1" alt="bild för frågan: {{ question.question_text }}" style="max-height: 33rem;">
         <form method="post">
             {% csrf_token %}
             {% for choice in choices %}
