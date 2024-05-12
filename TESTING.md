@@ -115,6 +115,17 @@ LightHouse is a web performance testing tool that can be used to evaluate the pe
 
 - Lighthouse Reports Could not be generated for pages because of restrictions for inlogged users only
 
+---
+
+## Compatibility
+
+Testing was conducted on the following browsers;
+
+- Brave;
+- Chrome;
+- Firefox;
+
+[Compatibility Report](documentation/validation/compatibility.pdf)
 
 ---
 ## Responsiveness
