@@ -57,3 +57,43 @@ I am running the following testing commands in my terminal to test the code:
 ```
 python3 manage.py test <name of the app>
 ```
+
+To create the coverage report, I run the following command:
+
+```
+coverage run --source=<name of the app> manage.py test
+```
+
+```
+coverage report
+```
+
+**app:**
+
+![Django unit testing. App. Coverage](documentation/testing/coverage/coverage_app.png)
+
+---
+
+## Bugs
+
+**Solved bugs:**
+1. I was getting a server error when trying to access the create road sign form in production.
+
+*Solution:*
+
+Corrected the template name in the view to match the name of the .html file while being case sensitive .
+
+2. I was not being able to delete anything such as Trafic Rule or Road Sign
+
+*Solution:*
+
+I changed in the template from `<input type="button">` to `<input type="submit">`.
+
+**Unsolved bugs:**
+
+- None known
+
+## Validation
+
+### HTML Validation:
+- No errors or warnings were found when passing through the official [W3C](https://validator.w3.org/) validator. This checking was done manually by copying the view page source code (Ctrl+U) and pasting it into the validator.
