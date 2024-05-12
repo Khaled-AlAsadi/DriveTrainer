@@ -6,21 +6,21 @@
   {% if user.is_authenticated %}
     {% if request.user.is_staff %}
       <div class="container mb-3">
-        <a class="btn btn-primary" type="button" href="{% url 'trafic_rule/create' %}">Lägg till</a>
+        <a class="btn btn-primary" type="button" href="{% url 'trafic_rule/create' %}" aria-label="Lägg till trafikregel">Lägg till</a>
       </div>
     {% endif %}
     {% for rule in page %}
 
       <div class="container mb-3">
         <div class="card" style="width: 33rem;">
-          <img class="card-img-top" src="{{ rule.image_link }}" alt="Card image cap">
+          <img class="card-img-top" src="{{ rule.image_link }}" alt="bild för {{ rule.title }}">
           <div class="card-body">
             <h5 class="card-title">{{ rule.title }}</h5>
             <p class="card-text">{{ rule.sub_text }}</p>
             {% if request.user.is_staff %}
-              <a class="btn btn-primary mt-3" type="button" href="{% url 'update_traficRule_view' id=rule.id %}">Uppdatera</a>
+              <a class="btn btn-primary mt-3" type="button" href="{% url 'update_traficRule_view' id=rule.id %}" aria-label="Uppdatera trafikregel">Uppdatera</a>
 
-              <a type="button" class="btn btn-danger mt-3" href="{% url 'traficrule_delete' id=rule.id %}">Ta bort</a>
+              <a type="button" class="btn btn-danger mt-3" href="{% url 'traficrule_delete' id=rule.id %}" aria-label="Ta bort">Ta bort</a>
             {% endif %}
           </div>
 
@@ -34,24 +34,24 @@
   <!-- Pagination Links -->
   <div class="container">
     {% if page.has_previous %}
-      <a href="?page={{ page.previous_page_number }}" class="btn btn-secondary mx-2">Previous</a>
+      <a href="?page={{ page.previous_page_number }}" class="btn btn-secondary mx-2" aria-label="Föregående sida">Föregående sida</a>
 
-      <a href="?page=1" class="btn btn-secondary">First</a>
+      <a href="?page=1" class="btn btn-secondary" aria-label="Första sida">Första sida</a>
     {% endif %}
 
     {% for num in page.paginator.page_range %}
       {% if num == page.number %}
         <span>{{ num }}</span>
       {% else %}
-        <a href="?page={{ num }}" class="btn btn-secondary mx-2">{{ num }}</a>
+        <a href="?page={{ num }}" class="btn btn-secondary mx-2" aria-label="nuvarande sidonummer {{num}}">{{ num }}</a>
       {% endif %}
     {% endfor %}
 
 
     {% if page.has_next %}
-      <a href="?page={{ page.paginator.num_pages }}" class="btn btn-secondary mx-2">Last</a>
+      <a href="?page={{ page.paginator.num_pages }}" class="btn btn-secondary mx-2" aria-label="Sista sida">Sista sida</a>
 
-      <a href="?page={{ page.next_page_number }}" class="btn btn-secondary mx-2">Next</a>
+      <a href="?page={{ page.next_page_number }}" class="btn btn-secondary mx-2" aria-label="Nästa sida">Nästa sida</a>
     {% endif %}
   </div>
 {% endblock %}

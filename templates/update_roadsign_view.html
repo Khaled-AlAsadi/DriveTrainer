@@ -13,9 +13,9 @@
 
             <input class="btn btn-success mt-3" type="submit" value="Uppdatera">
             {% if PAGENUMBER is None %}
-                <a class="btn btn-danger mt-3" href="/road_signs">Avbryt</a>
+                <a class="btn btn-danger mt-3" href="/road_signs" aria-label="Avbryt">Avbryt</a>
             {% else %}
-                <a class="btn btn-danger mt-3" href="/road_signs?page={{PAGENUMBER}}">Avbryt</a>
+                <a class="btn btn-danger mt-3" href="/road_signs?page={{PAGENUMBER}}" aria-label="Avbryt">Avbryt</a>
             {% endif %}
         </form>
 

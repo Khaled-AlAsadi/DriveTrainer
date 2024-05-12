@@ -3,8 +3,8 @@
 {% block title %}DriveTrainer - Trafikregler - Quiz{% endblock %}
 {% block content %}
     <div class="container">
-        <a  href="/">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+        <a aria-label="Tillbaka till startsidan" href="/">
+            <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
                 <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8"/>
             </svg>
             Tillbaka
@@ -26,12 +26,12 @@
         </form>
         <div class="button-container" style="display: flex; justify-content: center; gap: 3rem; margin-top: 20px;">
             {% if not is_first_question %}
-                <a class="btn btn-primary mt-3" href="{% url 'previous_question' current_question_id=current_question_id %}" class="nextButton">
+                <a aria-label="Föregående fråga" class="btn btn-primary mt-3" href="{% url 'previous_question' current_question_id=current_question_id %}" class="nextButton">
                     Föregående fråga
                 </a>
             {% endif %}
             {% if not is_last_question %}
-                <a class="btn btn-primary mt-3" href="{% url 'next_question' current_question_id=current_question_id %}" class="nextButton">
+                <a class="btn btn-primary mt-3" aria-label="Nästa fråga" href="{% url 'next_question' current_question_id=current_question_id %}" class="nextButton">
                     Nästa fråga
                 </a>
             {% endif %}

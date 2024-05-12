@@ -14,20 +14,20 @@
 
   <body style="min-height: 100vh; display: flex; flex-direction: column;">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <a class="navbar-brand" href="/">DriveTrainer</a>
+      <a class="navbar-brand" href="/" aria-label="DriveTrainer logo">DriveTrainer</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
           {% if user.is_authenticated %}
             <li class="nav-item {% if request.path == '/' %}active{% endif %}">
-              <a class="nav-link" href="/">Hem <span class="sr-only">(current)</span></a>
+              <a class="nav-link" href="/" aria-label="Hem startsidan">Hem <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item {% if request.path == '/trafic_rules' %}active{% endif %}">
-              <a class="nav-link" href="/trafic_rules">TrafikRegler</a>
+              <a class="nav-link" href="/trafic_rules" aria-label="TrafikRegler">TrafikRegler</a>
             </li>
             <li class="nav-item {% if request.path == '/road_signs' %}active{% endif %}">
-              <a class="nav-link" href="/road_signs">Vägmärken</a>
+              <a class="nav-link" href="/road_signs" aria-label="Vägmärken">Vägmärken</a>
             </li>
             <form method="post" action="{% url 'logout' %}">
               {% csrf_token %}
@@ -35,7 +35,7 @@
             </form>
           {% else %}
             <li class="nav-item {% if request.path == '/login/' %}active{% endif %}">
-              <a class="nav-link" href="{% url 'login' %}">logga in</a>
+              <a class="nav-link" href="{% url 'login' %}" aria-label="Logga in">Logga in</a>
             </li>
           {% endif %}
         </ul>

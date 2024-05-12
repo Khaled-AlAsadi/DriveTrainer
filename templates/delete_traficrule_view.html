@@ -10,9 +10,9 @@
             Är du säker att du vill ta bort trafikregel ?
             <input type="button" class="btn btn-danger"  type="submit" value="Ja" />
             {% if PAGENUMBER is None %}
-                <a class="btn btn-primary" type="button" href="/trafic_rules">Avbryt </a>
+                <a class="btn btn-primary" type="button" href="/trafic_rules" aria-label="Avbryt">Avbryt </a>
             {% else %}
-                <a class="btn btn-primary" type="button" href="/trafic_rules?page={{PAGENUMBER}}">Avbryt</a>
+                <a class="btn btn-primary" type="button" href="/trafic_rules?page={{PAGENUMBER}}" aria-label="Avbryt">Avbryt</a>
             {% endif %}
         </form>
     </div>

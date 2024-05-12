@@ -12,9 +12,9 @@
             <input class="btn btn-success mt-3" type="submit" value="Uppdatera">
 
             {% if PAGENUMBER is None %}
-                <a class="btn btn-danger mt-3" href="/trafic_rules">Avbryt</a>
+                <a class="btn btn-danger mt-3" href="/trafic_rules" aria-label="Avbryt">Avbryt</a>
             {% else %}
-                <a class="btn btn-danger mt-3" href="/trafic_rules?page={{PAGENUMBER}}">Avbryt</a>
+                <a class="btn btn-danger mt-3" href="/trafic_rules?page={{PAGENUMBER}}" aria-label="Avbryt">Avbryt</a>
             {% endif %}
         </form>
 
