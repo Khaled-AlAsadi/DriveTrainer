@@ -7,7 +7,7 @@
 
 ## About
 
-DriveReady is a website that allows user to learn about various roadsigns and traficRules. It has a login system, a quiz for the user to train. The main functionality of Adding,Updating,Deleting is purposed only for "Administrators/staff". Every person with the administrator privilage can do the "CRUD" operations
+DriveReady is a website that allows user to learn about various roadsigns and traficRules. It has a login system, a quiz for the user to train. The main functionality of Adding,Updating,Deleting is purposed only for "Administrators/staff". Every person with the administrator privilage can do the "CRUD" operations. The site uses pictures from another webpage, in case the images does not render in the futures it should be due an error with the links. 
 
 ---
 
