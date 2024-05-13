@@ -45,7 +45,7 @@ This feature allows the user to filter through the content by making a search.
 
 #### Hosting Pictures
 
-The feature is intended to host pictures instead of using pictures from a different page.
+The feature is intended to host pictures instead of using pictures from a different page. Right now the app uses picture from another site which is not optimal
 
 ---
 
