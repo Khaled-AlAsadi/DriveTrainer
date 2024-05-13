@@ -94,7 +94,7 @@ Please refer to the [FEATURES.md](FEATURES.md) file for all test-related documen
 
 ### Wireframes
 
-    [Wireframes](documentation/design/wireframes.pdf)
+![Wireframes](documentation/design/wireframes.pdf)
 
   
 
