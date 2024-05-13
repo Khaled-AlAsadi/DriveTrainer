@@ -102,7 +102,7 @@ Please refer to the [FEATURES.md](FEATURES.md) file for all test-related documen
 
 
 ## Flowcharts
-To understand CRUD concept, I created several a flowchart diagram.
+To understand CRUD concept, I created a flowchart diagram.
 
 1. Ability to preform CRUD (Create, Read , Update , Delete) functionalty for staff/admin users
 
