@@ -92,12 +92,9 @@ Please refer to the [FEATURES.md](FEATURES.md) file for all test-related documen
 ---
 ## Design
 
-
-### Color Scheme
-
-
-
 ### Wireframes
+
+    [Wireframes](documentation/design/wireframes.pdf)
 
   
 
@@ -202,7 +199,13 @@ Please refer to the [DEPLOYMENT.md](DEPLOYMENT.md) file for all deployment.
 
 ### Content and Images
 
+- [övningskörning](https://www.xn--vningskrning-3ibh.com/): for images usage.
+- [chrome developer tools](https://developer.chrome.com/extensions/devtools_inspector): for providing a free platform to test website.
+
 
 ---
 
 ## Acknowledgments
+
+[codeinstitute](https://codeinstitute.net/se/)
+I am thankful to Code Institue for providing the template for the project to use!
