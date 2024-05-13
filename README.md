@@ -20,10 +20,32 @@ This website is intended for people interested in learning how to drive a car. s
 
 ### User Stories
 
+#### First Time Visitor
+
+- As a First Time Visitor, I want to easily understand the main purpose of the site.
+- As a First Time Visitor, I want to be able to easily navigate through the website, so I can find the content.
+- As a First Time Visitor, I want to be able to register an account.
+- As a First Time Visitor, I want to be able to login
+
+### Returning VisitorGoals:
+
+- As a Returning Visitor, I want to see more content, so that I can prepare more for the exam.
+
 ---
 
 ## Future Development
 
+#### Update Styles of the page
+
+The styles was not a huge focus because the app is a static webpage. In the future i should focus on updating the styles.
+
+#### Ability to search through the content
+
+This feature allows the user to filter through the content by making a search.
+
+#### Hosting Pictures
+
+The feature is intended to host pictures instead of using pictures from a different page.
 
 ---
 
@@ -108,6 +130,51 @@ To understand some concepts, I created several flowchart diagrams.
 
 ### Data Modeling
 
+#### Trafic Rule Question Model
+| Name          | Database Key  | Field Type    | Validation |
+| ------------- | ------------- | ------------- | ---------- |
+| question_text          | question_text          | CharField    | max_length=500 |
+| pub_date   | pub_date   | DateTimeField    |  |
+| is_saved   | is_saved   | BooleanField    |  |
+| link   | link   | CharField    | max_length=500 |
+
+
+
+#### Trafic Rule Choice Model
+| Name          | Database Key  | Field Type    | Validation |
+| ------------- | ------------- | ------------- | ---------- |
+| question      | question      | ForeignKey    |            |
+| choice_text   | choice_text   | CharField     | max_length=400|
+| is_correct    | is_correct    | BooleanField  |            |
+
+
+
+#### Trafic Rule Answer Model
+| Name          | Database Key  | Field Type    | Validation |
+| ------------- | ------------- | ------------- | ---------- |
+| question      | question      | ForeignKey    |            |
+| user          | user          | ForeignKey    |            |
+| selected_choices    | selected_choices    | ManyToManyField  |            |
+| is_answered          | is_answered          | BooleanField    |            |
+
+
+
+#### Trafic Rule Model
+| Name          | Database Key  | Field Type    | Validation |
+| ------------- | ------------- | ------------- | ---------- |
+| title         | title         | CharField     | max_length=400 |
+| sub_title          | sub_title          | CharField    |   max_length=400    |
+| sub_text    | sub_text    | TextField  |     max_length=500       |
+| image_link          | image_link          | CharField    |    max_length=500        |
+
+
+
+#### Road Sign Model
+| Name          | Database Key  | Field Type    | Validation |
+| ------------- | ------------- | ------------- | ---------- |
+| title         | title         | CharField     | max_length=400 |
+| description          | description          | TextField    |   max_length=800    |
+| image_link          | image_link          | CharField    |    max_length=500        |
 
 ---
 ## Testing
