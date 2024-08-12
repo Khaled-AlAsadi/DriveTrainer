@@ -1,3 +1,5 @@
+# Ignore SQLite database
+db.sqlite3
 core.Microsoft*
 core.mongo*
 core.python*
