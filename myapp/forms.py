@@ -1,5 +1,6 @@
 from django import forms
 from .models import RoadSign, TraficRule
+from django.contrib.auth.forms import AuthenticationForm
 
 # creating a form
 
@@ -58,3 +59,16 @@ class TraficRuleForm(forms.ModelForm):
             "sub_text",
             "image_link"
         ]
+
+class CustomAuthenticationForm(AuthenticationForm):
+    error_messages = {
+        'invalid_login': "Ogiltigt användarnamn eller lösenord.",
+        'inactive': "Detta konto är inaktiverat.",
+    }
+
+    def confirm_login_allowed(self, user):
+        if not user.is_active:
+            raise forms.ValidationError(
+                self.error_messages['inactive'],
+                code='inactive',
+            )

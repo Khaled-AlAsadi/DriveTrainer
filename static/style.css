@@ -1,0 +1,23 @@
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+form label {
+    display: flex;
+    align-items: center;
+}
+
+form .btn {
+    display: flex;
+    max-width: 100%;
+}
+
+form input {
+    max-width: 300px;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}

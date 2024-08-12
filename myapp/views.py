@@ -7,7 +7,10 @@ from .models import TraficRuleChoice, TraficRuleQuestion, RoadSign
 from django.contrib.auth.models import AnonymousUser
 from django.shortcuts import get_object_or_404
 from django.core.paginator import Paginator
-
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib import messages
+from django.contrib.auth import authenticate, login
+from .forms import CustomAuthenticationForm
 # Create your views here.
 PAGENUMBER = 1
 
@@ -31,6 +34,22 @@ def index(request):
     else:
         return HttpResponseRedirect('login')
 
+
+def custom_login_view(request):
+    if request.method == 'POST':
+        form = CustomAuthenticationForm(request, data=request.POST)
+        if form.is_valid():
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password')
+            user = authenticate(username=username, password=password)
+            if user is not None:
+                login(request, user)
+                messages.success(request, f'Välkommen {username}!')
+                return redirect('home')
+    else:
+        form = CustomAuthenticationForm()
+    
+    return render(request, 'registration/login.html', {'form': form})
 
 def trafic_rules(request):
     global PAGENUMBER

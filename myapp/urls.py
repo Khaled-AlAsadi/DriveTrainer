@@ -3,6 +3,7 @@ from . import views
 
 
 urlpatterns = [
+     path('login/', views.custom_login_view, name='login'),
     path('trafic_rule_question_detail/<int:question_id>/',
          views.trafic_rule_question_detail,
          name='trafic_rule_question_detail'),
