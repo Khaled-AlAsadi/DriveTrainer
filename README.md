@@ -20,16 +20,14 @@ This website is intended for people interested in learning how to drive a car. s
 
 ### User Stories
 
-#### First Time Visitor
+| Issue ID                                                                                    | User Story                                                                                 |
+| ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ |
+| [#1](https://github.com/users/Khaled-AlAsadi/projects/5/views/1?pane=issue&itemId=72039736) | As a First Time Visitor, I want to be able to register an account.  |
+| [#2](https://github.com/users/Khaled-AlAsadi/projects/5/views/1?pane=issue&itemId=72040112) | As a First Time Visitor, I want to be able to login.                             |
+| [#3](https://github.com/users/Khaled-AlAsadi/projects/5/views/1?pane=issue&itemId=72040223) | As a First Time Visitor, I want to be able to easily navigate through the website, so I can find the content.                                     |
+| [#4](https://github.com/users/Khaled-AlAsadi/projects/5/views/1?pane=issue&itemId=72040328) | As a First Time Visitor, I want to easily understand the main purpose of the site. |
+| [#5](https://github.com/users/Khaled-AlAsadi/projects/5/views/1?pane=issue&itemId=74521149) | As a Returning Visitor, I want to see more content, so that I can prepare more for the exam. |
 
-- As a First Time Visitor, I want to easily understand the main purpose of the site.
-- As a First Time Visitor, I want to be able to easily navigate through the website, so I can find the content.
-- As a First Time Visitor, I want to be able to register an account.
-- As a First Time Visitor, I want to be able to login
-
-### Returning VisitorGoals:
-
-- As a Returning Visitor, I want to see more content, so that I can prepare more for the exam.
 
 ---
 
