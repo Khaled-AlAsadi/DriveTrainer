@@ -17,10 +17,14 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path,include
 
+# Custom 404 error view
+handler404 = 'myapp.views.error_404' 
+# Custom 500 error view
+handler500 = 'myapp.views.error_500'
+
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", include("accounts.urls")),
     path("", include("myapp.urls")),
     path("", include("django.contrib.auth.urls")),
-  
 ]

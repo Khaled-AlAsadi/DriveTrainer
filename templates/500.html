@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+
+{% block title %}DriveTrainer - Något gick fel {% endblock %}
+{% block content %}
+<h1>Server Error (500)</h1>
+<p>Något gick fel!</p>
+<p>Klicka <a href="{% url 'home' %}">här</a> för att gå tillbaka.</p>
+{% endblock %}
