@@ -15,10 +15,10 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path,include
+from django.urls import path, include
 
 # Custom 404 error view
-handler404 = 'myapp.views.error_404' 
+handler404 = 'myapp.views.error_404'
 # Custom 500 error view
 handler500 = 'myapp.views.error_500'
 

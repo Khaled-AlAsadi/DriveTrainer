@@ -60,6 +60,7 @@ class TraficRuleForm(forms.ModelForm):
             "image_link"
         ]
 
+
 class CustomAuthenticationForm(AuthenticationForm):
     error_messages = {
         'invalid_login': "Ogiltigt användarnamn eller lösenord.",
