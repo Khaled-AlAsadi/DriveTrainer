@@ -2,21 +2,16 @@
 
 {% block title %}DriveTrainer - Uppdatera trafikregel {% endblock %}
 {% block content %}
-    <div class="main">
-    <!-- Create a Form -->
-        <form method="POST">
-        <!-- Security token by Django -->
-            {% csrf_token %}
+    <form method="POST" enctype="multipart/form-data" class="custom-form">
+        {% csrf_token %}
 
-            {{ form.as_p }}
-            <input class="btn btn-success mt-3" type="submit" value="Uppdatera">
+        {{ form.as_p }}
 
-            {% if PAGENUMBER is None %}
-                <a class="btn btn-danger mt-3" href="/trafic_rules" aria-label="Avbryt">Avbryt</a>
-            {% else %}
-                <a class="btn btn-danger mt-3" href="/trafic_rules?page={{PAGENUMBER}}" aria-label="Avbryt">Avbryt</a>
-            {% endif %}
-        </form>
-
-    </div>
+        <a  class="btn-submit" type="submit" value="Uppdatera" aria-label="Uppdatera">Uppdatera</a>
+        {% if PAGENUMBER is None %}
+            <a class="btn-cancel" href="/trafic_rules" aria-label="Avbryt">Avbryt</a>
+        {% else %}
+            <a class="btn-cancel" href="/trafic_rules?page={{PAGENUMBER}}" aria-label="Avbryt">Avbryt</a>
+        {% endif %}
+    </form>
 {% endblock %}

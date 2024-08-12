@@ -2,7 +2,7 @@
 
 {% block title %}DriveTrainer - Skapa vägmärke {% endblock %}
 {% block content %}
-    <form method="POST" enctype="multipart/form-data">
+    <form method="POST" enctype="multipart/form-data" class="custom-form">
 
     <!-- Security token -->
         {% csrf_token %}
@@ -10,11 +10,11 @@
     <!-- Using the formset -->
         {{ form.as_p }}
 
-        <input class="btn btn-success mt-3" type="submit" value="Skapa">
+        <a class="btn-submit" type="submit" aria-label="Skapa">Skapa</a>
         {% if PAGENUMBER is None %}
-            <a class="btn btn-primary mt-3" href="/road_signs" aria-label="Avbryt">Avbryt</a>
+            <a class="btn-cancel" href="/road_signs" aria-label="Avbryt">Avbryt</a>
         {% else %}
-            <a class="btn btn-primary mt-3" aria-label="Avbryt" href="/road_signs?page={{PAGENUMBER}}">Avbryt</a>
+            <a class="btn-cancel" aria-label="Avbryt" href="/road_signs?page={{PAGENUMBER}}">Avbryt</a>
         {% endif %}
     </form>
 {% endblock %}

@@ -2,14 +2,14 @@
 
 {% block title %}DriveTrainer - Ta bort vägmärke {% endblock %}
 {% block content %}
-    <form class="delete-roadsign-form" method="POST">
+    <form method="POST" enctype="multipart/form-data" class="custom-form">
         {% csrf_token %}
         Är du säker att du vill ta bort vägemärket ?
-        <input type="submit" class="btn btn-danger" value="Ja" />
+        <a class="btn-submit" value="Ja" aria-label="Ja">Ja</a>
         {% if PAGENUMBER is None %}
-            <a class="btn btn-primary" href="/road_signs" aria-label="Avbryt">Avbryt</a>
+            <a class="btn-cancel" href="/road_signs" aria-label="Avbryt">Avbryt</a>
         {% else %}
-            <a class="btn btn-primary" href="/road_signs?page={{PAGENUMBER}}" aria-label="Avbryt">Avbryt</a>
+            <a class="btn-cancel" href="/road_signs?page={{PAGENUMBER}}" aria-label="Avbryt">Avbryt</a>
         {% endif %}
     </form>
 {% endblock %}

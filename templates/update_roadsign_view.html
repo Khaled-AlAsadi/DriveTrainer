@@ -2,22 +2,18 @@
 
 {% block title %}DriveTrainer - Uppdatera vägmärke sida {% endblock %}
 {% block content %}
-    <div class="main">
-    <!-- Create a Form -->
-        <form method="POST">
-        <!-- Security token by Django -->
-            {% csrf_token %}
+    <form method="POST" enctype="multipart/form-data" class="custom-form">
+        <!-- Security token -->
+        {% csrf_token %}
 
-        <!-- form as paragraph -->
-            {{ form.as_p }}
+        <!-- Using the formset -->
+        {{ form.as_p }}
 
-            <input class="btn btn-success mt-3" type="submit" value="Uppdatera">
-            {% if PAGENUMBER is None %}
-                <a class="btn btn-danger mt-3" href="/road_signs" aria-label="Avbryt">Avbryt</a>
-            {% else %}
-                <a class="btn btn-danger mt-3" href="/road_signs?page={{PAGENUMBER}}" aria-label="Avbryt">Avbryt</a>
-            {% endif %}
-        </form>
-
-    </div>
+        <a class="btn-submit" type="submit" aria-label="Uppdatera">Uppdatera</a>
+        {% if PAGENUMBER is None %}
+            <a class="btn-cancel" href="/road_signs" aria-label="Avbryt">Avbryt</a>
+        {% else %}
+            <a class="btn-cancel" href="/road_signs?page={{ PAGENUMBER }}" aria-label="Avbryt">Avbryt</a>
+        {% endif %}
+    </form>
 {% endblock %}
