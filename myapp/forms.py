@@ -1,9 +1,47 @@
 from django import forms
 from .models import RoadSign, TraficRule
 from django.contrib.auth.forms import AuthenticationForm
-
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 # creating a form
 
+class RegisterUserForm(UserCreationForm):
+    email = forms.EmailField(required=True, label="E-postadress")
+
+    class Meta:
+        model = User
+        fields = ('username', 'first_name', 'last_name', 'email', 'password1', 'password2')
+        labels = {
+            'username': 'Användarnamn',
+            'first_name': 'Förnamn',
+            'last_name': 'Efternamn',
+            'email': 'E-postadress',
+            'password1': 'Lösenord',
+            'password2': 'Bekräfta lösenord',
+        }
+        error_messages = {
+            'username': {
+                'required': 'Användarnamn är obligatoriskt.',
+                'unique': 'Detta användarnamn är redan registrerat.',
+            },
+            'email': {
+                'required': 'E-postadress är obligatorisk.',
+                'unique': 'Detta e-postadress är redan registrerat.',
+            },
+            'password1': {
+                'required': 'Lösenord är obligatoriskt.',
+            },
+            'password2': {
+                'required': 'Bekräfta lösenord är obligatoriskt.',
+                'password_mismatch': 'Lösenorden stämmer inte överens.',
+            },
+        }
+
+    def clean_email(self):
+        email = self.cleaned_data.get('email')
+        if User.objects.filter(email=email).exists():
+            raise forms.ValidationError("E-postadress är redan registrerad.")
+        return email
 
 class RoadSignForm(forms.ModelForm):
     title = forms.CharField(widget=forms.TextInput(attrs={

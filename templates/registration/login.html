@@ -6,19 +6,51 @@
   <h2>Logga in</h2>
   <form method="post">
     {% csrf_token %}
+    
+    <!-- Username Field -->
     <div class="form-group">
         <label for="{{ form.username.id_for_label }}">Användarnamn:</label>
-        <input type="text" name="username" id="{{ form.username.id_for_label }}" placeholder="Användarnamn" autocomplete="off" class="form-control">
+        <input 
+          type="text" 
+          name="username" 
+          id="{{ form.username.id_for_label }}" 
+          placeholder="Användarnamn" 
+          autocomplete="off" 
+          class="form-control"
+          value="{{ form.username.value|default_if_none:'' }}"
+        >
+        {% if form.username.errors %}
+          <p class="form-error">{{ form.username.errors }}</p>
+        {% endif %}
     </div>
+    
+    <!-- Password Field -->
     <div class="form-group">
         <label for="{{ form.password.id_for_label }}">Lösenord:</label>
-        <input type="password" name="password" id="{{ form.password.id_for_label }}" placeholder="Lösenord" autocomplete="off" class="form-control">
+        <input 
+          type="password" 
+          name="password" 
+          id="{{ form.password.id_for_label }}" 
+          placeholder="Lösenord" 
+          autocomplete="off" 
+          class="form-control"
+        >
+        {% if form.password.errors %}
+          <p class="form-error">{{ form.password.errors }}</p>
+        {% endif %}
     </div>
+    
+    <!-- Form Errors -->
     <div class="form-errors">
-        {{ form.non_field_errors }}
+        {% if form.non_field_errors %}
+          <p class="form-error">{{ form.non_field_errors }}</p>
+        {% endif %}
     </div>
+    
+    <!-- Signup Link -->
     <p>Har du inget konto? <a href="{% url 'signup' %}" aria-label="Skapa ett konto">Skapa ditt konto här</a></p>
+    
+    <!-- Submit Button -->
     <input class="btn btn-success" type="submit" value="Logga in">
-</form>
-
+  </form>
 {% endblock %}

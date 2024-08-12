@@ -47,6 +47,11 @@ def custom_login_view(request):
                 login(request, user)
                 messages.success(request, f'Välkommen {username}!')
                 return redirect('home')
+            else:
+                form.add_error(None, "Ogiltigt användarnamn eller lösenord.")
+        else:
+            # If form is not valid, it will automatically have errors
+            pass
     else:
         form = CustomAuthenticationForm()
 

@@ -1,11 +1,10 @@
-/* General form styling */
 form {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
     max-width: 100%;
     justify-content: center;
-    text-align:start
+    text-align: start
 }
 
 form label {
@@ -28,6 +27,18 @@ form input {
 
 /* Error message styling */
 .form-errors {
+    color: #d9534f;
+}
+
+.form-error {
+    color: red;
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+    margin-bottom: 0;
+}
+
+.errorlist li {
+    list-style: none;
     color: #d9534f;
 }
 
@@ -61,7 +72,7 @@ form input {
 }
 
 .btn-submit:hover {
-    background-color: #0056b3; 
+    background-color: #0056b3;
     border-color: #0056b3;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     color: #fff;

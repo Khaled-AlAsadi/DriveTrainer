@@ -3,10 +3,121 @@
 {% block title %}DriveTrainer - Skapa konto sida{% endblock %}
 
 {% block content %}
-  <h2>Sign up</h2>
+  <h2>Skapa Konto</h2>
   <form method="post">
     {% csrf_token %}
-      {{ form }}
-      <input class="btn btn-success" type="submit" value="Submit">
+    
+    <!-- Username Field -->
+    <div class="form-group">
+        <label for="{{ form.username.id_for_label }}">Användarnamn:</label>
+        <input 
+          type="text" 
+          name="username" 
+          id="{{ form.username.id_for_label }}" 
+          placeholder="Användarnamn" 
+          autocomplete="off" 
+          class="form-control" 
+          value="{{ form.username.value|default_if_none:'' }}"
+        >
+        {% if form.username.errors %}
+          <p class="form-error">{{ form.username.errors }}</p>
+        {% endif %}
+    </div>
+    
+    <!-- First Name Field -->
+    <div class="form-group">
+        <label for="{{ form.first_name.id_for_label }}">Förnamn:</label>
+        <input 
+          type="text" 
+          name="first_name" 
+          id="{{ form.first_name.id_for_label }}" 
+          placeholder="Förnamn" 
+          autocomplete="off" 
+          class="form-control" 
+          value="{{ form.first_name.value|default_if_none:'' }}"
+        >
+        {% if form.first_name.errors %}
+          <p class="form-error">{{ form.first_name.errors }}</p>
+        {% endif %}
+    </div>
+    
+    <!-- Last Name Field -->
+    <div class="form-group">
+        <label for="{{ form.last_name.id_for_label }}">Efternamn:</label>
+        <input 
+          type="text" 
+          name="last_name" 
+          id="{{ form.last_name.id_for_label }}" 
+          placeholder="Efternamn" 
+          autocomplete="off" 
+          class="form-control" 
+          value="{{ form.last_name.value|default_if_none:'' }}"
+        >
+        {% if form.last_name.errors %}
+          <p class="form-error">{{ form.last_name.errors }}</p>
+        {% endif %}
+    </div>
+    
+    <!-- Email Field -->
+    <div class="form-group">
+        <label for="{{ form.email.id_for_label }}">E-postadress:</label>
+        <input 
+          type="email" 
+          name="email" 
+          id="{{ form.email.id_for_label }}" 
+          placeholder="E-postadress" 
+          autocomplete="off" 
+          class="form-control" 
+          value="{{ form.email.value|default_if_none:'' }}"
+        >
+        {% if form.email.errors %}
+          <p class="form-error">{{ form.email.errors }}</p>
+        {% endif %}
+    </div>
+    
+    <!-- Password1 Field -->
+    <div class="form-group">
+        <label for="{{ form.password1.id_for_label }}">Lösenord:</label>
+        <input 
+          type="password" 
+          name="password1" 
+          id="{{ form.password1.id_for_label }}" 
+          placeholder="Lösenord" 
+          autocomplete="off" 
+          class="form-control"
+        >
+        {% if form.password1.errors %}
+          <p class="form-error">{{ form.password1.errors }}</p>
+        {% endif %}
+    </div>
+    
+    <!-- Password2 Field -->
+    <div class="form-group">
+        <label for="{{ form.password2.id_for_label }}">Bekräfta lösenord:</label>
+        <input 
+          type="password" 
+          name="password2" 
+          id="{{ form.password2.id_for_label }}" 
+          placeholder="Bekräfta lösenord" 
+          autocomplete="off" 
+          class="form-control"
+        >
+        {% if form.password2.errors %}
+          <p class="form-error">{{ form.password2.errors }}</p>
+        {% endif %}
+    </div>
+    
+    <!-- Form Errors -->
+    <div class="form-errors">
+        {% if form.non_field_errors %}
+          <p class="form-error">{{ form.non_field_errors }}</p>
+        {% endif %}
+    </div>
+    
+    <!-- Signup Link -->
+    <p>Har du redan ett konto? <a href="{% url 'login' %}" aria-label="Logga in">Logga in här</a></p>
+    
+    <!-- Submit Button -->
+    <input class="btn btn-success" type="submit" value="Skapa konto">
   </form>
 {% endblock %}
