@@ -5,7 +5,7 @@
     <form class="custom-form" method="POST">
         {% csrf_token %}
         Är du säker att du vill ta bort trafikregel ?
-        <a class="btn-submit" type="submit" value="Ja" aria-label="Ja">Ja</a>
+        <input class="btn-submit" type="submit" value="Ja"/>
         {% if PAGENUMBER is None %}
             <a class="btn-cancel" type="button" href="/trafic_rules" aria-label="Avbryt">Avbryt </a>
         {% else %}

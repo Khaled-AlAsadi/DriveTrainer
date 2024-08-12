@@ -4,6 +4,15 @@
 {% endblock %}
 {% block content %}
   {% if user.is_authenticated %}
+    {% if messages %}
+      <div class="message-container">
+          {% for message in messages %}
+              <div class="alert {{ message.tags }}">
+                  {{ message }}
+              </div>
+          {% endfor %}
+      </div>
+    {% endif %}
     {% if request.user.is_staff %}
       <div class="container mb-3">
         <a class="btn btn-primary" type="button" href="{% url 'trafic_rule/create' %}" aria-label="Lägg till trafikregel">Lägg till</a>

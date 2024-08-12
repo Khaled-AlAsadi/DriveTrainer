@@ -221,8 +221,10 @@ def create_roadSign_view(request):
         form = RoadSignForm(request.POST or None)
         if form.is_valid():
             form.save()
+            messages.success(request, 'väggmärket skapades!')
             return redirect('road_signs')
-
+        storage = messages.get_messages(request)
+        storage.used = True
         context['form'] = form
         context["PAGENUMBER"] = PAGENUMBER
 
@@ -247,7 +249,10 @@ def delete_roadSign_view(request, id):
             obj.delete()
             # after deleting redirect to
             # home page
+            messages.success(request, 'väggmärket raderades!')
             return redirect('road_signs')
+        storage = messages.get_messages(request)
+        storage.used = True
         context["PAGENUMBER"] = PAGENUMBER
         return render(request, "delete_roadsign_view.html", context)
     else:
@@ -269,8 +274,10 @@ def update_roadSign_view(request, id):
         # Save the data from the form and redirect to detail_view
         if form.is_valid():
             form.save()
+            messages.success(request, 'väggmärket uppdaterades!')
             return redirect('road_signs')
-
+        storage = messages.get_messages(request)
+        storage.used = True
         # Add form dictionary to context
         context["form"] = form
         context["PAGENUMBER"] = PAGENUMBER
@@ -292,8 +299,10 @@ def create_traficrule_view(request):
         form = TraficRuleForm(request.POST or None)
         if form.is_valid():
             form.save()
+            messages.success(request, 'trafikregler skapades!')
             return redirect('trafic_rules')
-
+        storage = messages.get_messages(request)
+        storage.used = True
         context['form'] = form
         context["PAGENUMBER"] = PAGENUMBER
         return render(request, "create_traficrule_view.html", context)
@@ -314,7 +323,10 @@ def delete_traficrule_view(request, id):
             # Delete the object
             obj.delete()
             # After deleting, redirect to the home page
+            messages.success(request, 'trafikregler raderades!')
             return redirect('trafic_rules')
+        storage = messages.get_messages(request)
+        storage.used = True
         context["PAGENUMBER"] = PAGENUMBER
         return render(request, "delete_traficrule_view.html", context)
     else:
@@ -335,8 +347,10 @@ def update_traficRule_view(request, id):
         # Save the data from the form and redirect to detail_view
         if form.is_valid():
             form.save()
+            messages.success(request, 'trafikregler uppdaterades!')
             return redirect('trafic_rules')
-
+        storage = messages.get_messages(request)
+        storage.used = True
         # Add form dictionary to context
         context["form"] = form
         context["PAGENUMBER"] = PAGENUMBER

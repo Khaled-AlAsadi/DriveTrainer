@@ -55,6 +55,7 @@ form input {
     border-radius: 5px;
     text-align: center;
     text-decoration: none;
+    min-width: 100%;
     cursor: pointer;
     transition: background-color 0.3s, border-color 0.3s, box-shadow 0.3s;
 }
@@ -89,3 +90,19 @@ form input {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
+.message-container {
+    margin-bottom: 20px;
+}
+
+.alert {
+    padding: 10px 20px;
+    margin-bottom: 10px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+
+.alert.success {
+    color: #155724;
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+}
