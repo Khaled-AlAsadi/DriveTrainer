@@ -84,15 +84,14 @@ WSGI_APPLICATION = "main.wsgi.application"
 
 DATABASES = {
     'default': dj_database_url.config(
-        default=os.environ.get('DATABASEURL')
+        default=os.environ.get('DATABASE_URL')
     )
 }
 
-# Override default database settings if DATABASE_URL is present in the environment
 if 'DATABASE_URL' in os.environ:
     DATABASES['default'] = dj_database_url.config(
-        conn_max_age=600,  # Enables persistent connections for performance
-        ssl_require=True   # Enforces SSL for secure connections
+        conn_max_age=600,
+        ssl_require=True
     )
 
 # Password validation
