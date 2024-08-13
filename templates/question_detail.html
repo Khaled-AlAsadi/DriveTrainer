@@ -2,7 +2,7 @@
 
 {% block title %}DriveTrainer - Trafikregler - Quiz{% endblock %}
 {% block content %}
-    <div class="container">
+    <div class="quiz-container">
         <a aria-label="Tillbaka till startsidan" href="/">
             <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
                 <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8"/>
@@ -14,16 +14,25 @@
         <form method="post">
             {% csrf_token %}
             {% for choice in choices %}
-                <input type="radio" name="choice" value="{{ choice.id }}" {% if choice.is_selected %}checked{% endif %}>
-                {{ choice.choice_text }}<br>
+                <div class="form-check">
+                    <input type="radio" id="choice-{{ choice.id }}" name="choice" value="{{ choice.id }}" {% if choice.is_selected %}checked{% endif %}>
+                    <label for="choice-{{ choice.id }}">{{ choice.choice_text }}</label>
+                </div>
             {% endfor %}
+            {% if messages  %}
+                <div class="message-container">
+                    {% for message in messages %}
+                        <div class="alert {{ message.tags }}">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
             {% if not is_answered_correctly %}
                 <button class="btn btn-success mt-3" type="submit" value="Submit">Submit</button>
             {% endif %}
-            {% if message %}
-                <p>{{ message }}</p>
-            {% endif %}
         </form>
+        {% if is_answered_correctly %}
         <div class="button-container" style="display: flex; justify-content: center; gap: 3rem; margin-top: 20px;">
             {% if not is_first_question %}
                 <a aria-label="Föregående fråga" class="btn btn-primary mt-3" href="{% url 'previous_question' current_question_id=current_question_id %}" class="nextButton">
@@ -36,5 +45,6 @@
                 </a>
             {% endif %}
         </div>
+        {% endif %}
     </div>
 {% endblock %}

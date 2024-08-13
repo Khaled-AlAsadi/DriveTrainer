@@ -117,3 +117,150 @@ form input {
     background-color: #d4edda;
     border-color: #c3e6cb;
 }
+
+.alert.error{
+    background-color: red;
+    color: #fff;
+}
+
+/* Custom styles for the quiz page */
+
+.quiz-container {
+    padding: 1.5rem;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+
+.quiz-container a {
+    display: flex;
+    align-items: center;
+    color: #007bff;
+    text-decoration: none;
+    margin-bottom: 1rem;
+}
+
+.quiz-container a svg {
+    margin-right: 0.5rem;
+}
+
+/* Styling for the question text */
+.quiz-container h1 {
+    font-size: 1.75rem;
+    margin-bottom: 1rem;
+    color: #333;
+}
+
+/* Responsive image styling */
+.quiz-container img.img-fluid {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+/* Form styling within .quiz-container */
+.quiz-container form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    max-width: 100%;
+    justify-content: center;
+    text-align: start;
+}
+
+
+.quiz-container form .form-check {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.quiz-container form input[type="radio"] {
+    accent-color: #007bff;
+}
+
+
+.quiz-container form .form-check label {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+    color: #555;
+}
+
+
+.quiz-container .btn-success {
+    background-color: #28a745;
+    border: none;
+    color: #fff;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.quiz-container .btn-success:hover {
+    background-color: #218838;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Navigation buttons */
+.quiz-container .button-container {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 20px;
+}
+
+.quiz-container .button-container .btn-primary {
+    background-color: #007bff;
+    border: none;
+    color: #fff;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.quiz-container .button-container .btn-primary:hover {
+    background-color: #0056b3;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Styling for the alert messages */
+.quiz-container .alert.success {
+    color: #155724;
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+}
+
+.quiz-container .alert.error {
+    background-color: #dc3545;
+    color: #fff;
+}
+
+/* Responsive design adjustments */
+@media (max-width: 768px) {
+    .quiz-container {
+        padding: 1rem;
+    }
+
+    .quiz-container .button-container {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .quiz-container form input[type="radio"] {
+        margin-right: 0.25rem;
+    }
+
+    .quiz-container .btn-success, .quiz-container .button-container .btn-primary {
+        width: 100%;
+        padding: 0.5rem;
+        font-size: 0.875rem;
+    }
+}

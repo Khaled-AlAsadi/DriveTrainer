@@ -159,7 +159,9 @@ def trafic_rule_question_detail(request, question_id):
                 submitted_choice = TraficRuleChoice.objects.get(
                     pk=submitted_answer_id)
                 if submitted_choice.is_correct:
-                    message = "Your answer is correct!"
+                    messages.success(request, 'Ditt svar är rätt!')
+                    storage = messages.get_messages(request)
+                    storage.used = True
                     is_answered_correctly = True
                     existing_answer = TraficRuleAnswer.objects.filter(
                         question=question, user=request.user).first()
@@ -177,9 +179,13 @@ def trafic_rule_question_detail(request, question_id):
                         if choice in existing_answer.selected_choices.all():
                             choice.is_selected = True
                 else:
-                    message = "Sorry, your answer is wrong."
+                    messages.error(request, 'Tyvärr, Ditt svar är fel.')
+                    storage = messages.get_messages(request)
+                    storage.used = True
             else:
-                message = "Please select an answer."
+                messages.error(request, 'Vänligen välj ett svar.')
+                storage = messages.get_messages(request)
+                storage.used = True
 
         elif request.method == "GET":
             existing_answer = TraficRuleAnswer.objects.filter(
