@@ -27,6 +27,7 @@ This website is intended for people interested in learning how to drive a car. s
 | [#3](https://github.com/users/Khaled-AlAsadi/projects/5/views/1?pane=issue&itemId=72040223) | As a First Time Visitor, I want to be able to easily navigate through the website, so I can find the content.                                     |
 | [#4](https://github.com/users/Khaled-AlAsadi/projects/5/views/1?pane=issue&itemId=72040328) | As a First Time Visitor, I want to easily understand the main purpose of the site. |
 | [#5](https://github.com/users/Khaled-AlAsadi/projects/5/views/1?pane=issue&itemId=74521149) | As a Returning Visitor, I want to see more content, so that I can prepare more for the exam. |
+| [#6](https://github.com/users/Khaled-AlAsadi/projects/5/views/1?pane=issue&itemId=74545236) | As a User, I want to be able to study and take the quiz. |
 
 
 ---
